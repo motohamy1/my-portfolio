@@ -4,7 +4,7 @@ import Folder from './ui/Folder'
 
 const HeroSection = () => {
   return (
-    <section className='flex flex-col md:flex-row min-h-screen py-20 gap-2'>
+    <section id="home" className='flex flex-col md:flex-row min-h-screen py-20 gap-2 bg-[#0f2028]'>
         {/* {the left section} */}
       <div className='flex-1 ml-4 pt-15 flex flex-col gap-10'>
         <div className='flex flex-col justify-between items-start'>

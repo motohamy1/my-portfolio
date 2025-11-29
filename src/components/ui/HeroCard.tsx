@@ -21,7 +21,7 @@ const HeroCard: React.FC<HeroCardProps> = ({
     <div className="relative w-full h-full min-h-[500px] flex items-end justify-center p-4">
       
       {/* CARD BACKGROUND */}
-      <div className="relative w-full h-[95%] bg-[#fbf7ba] rounded-[20px]  ">
+      <div className="relative w-full h-[95%] bg-cream rounded-[20px]  ">
         
         {/* Signature (Decorative) */}
         <div className="absolute top-8 left-8 z-10 opacity-90">
@@ -49,7 +49,7 @@ const HeroCard: React.FC<HeroCardProps> = ({
         </div>
 
         {/* --- TOP RIGHT SECTION (Website Link) --- */}
-        <div className="absolute top-0 right-0 z-20 bg-[#09474b] p-4 rounded-bl-[20px] ">
+        <div className="absolute top-0 right-0 z-20 bg-darker p-4 rounded-bl-[20px] ">
            <Link 
              href={websiteUrl}              
              target="_blank"
@@ -61,13 +61,13 @@ const HeroCard: React.FC<HeroCardProps> = ({
 
            {/* CSS Trick for "Inverted Border Radius" (The smooth curve effect) */}
            {/* Left side smoother */}
-           <div className="absolute top-0 left-[-40px] w-10 h-10 rounded-t-[40px] shadow-[20px_-20px_0_0_#09474b] pointer-events-none"></div>
+          <div className="absolute top-0 left-[-40px] w-10 h-10 rounded-t-[40px] shadow-[20px_-20px_0_0_#0f2028] pointer-events-none"></div>
            {/* Bottom side smoother */}
-           <div className="absolute bottom-[-40px] right-0 w-10 h-10 rounded-t-[40px] shadow-[20px_-20px_0_0_#09474b] pointer-events-none"></div>
+          <div className="absolute bottom-[-40px] right-0 w-10 h-10 rounded-t-[40px] shadow-[20px_-20px_0_0_#0f2028] pointer-events-none"></div>
         </div>
 
         {/* --- BOTTOM LEFT SECTION (Sidebar Icons) --- */}
-        <div className="absolute bottom-0 left-0 z-20 bg-[#09474b] p-4 rounded-tr-[20px]">
+        <div className="absolute bottom-0 left-0 z-20 bg-darker p-4 rounded-tr-[20px]">
           
           {/* Icon Container */}
           <div className="flex flex-col gap-3 bg-transparent p-2 rounded-[20px]">
@@ -104,9 +104,9 @@ const HeroCard: React.FC<HeroCardProps> = ({
 
            {/* CSS Trick for "Inverted Border Radius" */}
            {/* Top side smoother */}
-           <div className="absolute top-[-40px] left-0 w-10 h-10 rounded-b-[20px] shadow-[-20px_20px_0_0_#09474b] pointer-events-none"></div>
+          <div className="absolute top-[-40px] left-0 w-10 h-10 rounded-b-[20px] shadow-[-20px_20px_0_0_#0f2028] pointer-events-none"></div>
            {/* Right side smoother */}
-           <div className="absolute bottom-0 right-[-40px] w-10 h-10 rounded-b-[20px] shadow-[-20px_20px_0_0_#09474b] pointer-events-none"></div>
+          <div className="absolute bottom-0 right-[-40px] w-10 h-10 rounded-b-[20px] shadow-[-20px_20px_0_0_#0f2028] pointer-events-none"></div>
         </div>
 
       </div>
