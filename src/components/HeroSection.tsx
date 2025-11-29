@@ -1,35 +1,40 @@
 import React from 'react'
-import HeroCard from './ui/HeroCard'
 import Folder from './ui/Folder'
+import Image from "next/image";
 
 const HeroSection = () => {
+
+    const imageSrc = '/images/personal.png';
+
   return (
-    <section id="home" className='flex flex-col md:flex-row min-h-screen py-20 gap-2 bg-[#0f2028]'>
-        {/* {the left section} */}
-      <div className='flex-1 ml-4 pt-15 flex flex-col gap-10'>
-        <div className='flex flex-col justify-between items-start'>
-          <h1 className='text-6xl font-bold font-cursive italic mb- text-[#EFFBBB]'>
-            Hello,It seems You just enter my small world😊 <br />
-            <br/>I'm <span className='font-bold text-[#9db5b7]'>Mahmoud Eltohamy</span>
-            <br/>Full-Stack Web & Mobile Developer <br />
-            <br/>Are you ready to Transform Your Ideas into Reality ??
-          </h1>
-        <div className='flex flex-col justify-between items-start pt-15'>
-          <p className='text-3xl font-cursive text-white/60'>
-            ⏳ Let's take a look into my small passionate hopes
-          </p>
-        </div>
-        </div>
-        
-        {/* Folders */}
-        
+
+      <div className="grid grid-cols-6 grid-rows-6 gap-4 pt-30 min-h-screen pb-2 px-4">
+          <div className="col-span-3 row-span-2 border-2">1</div>
+
+          <div className="row-span-2 col-start-1 row-start-3 border-2">
+              <Folder />
+          </div>
+          <div className="row-span-2 col-start-2 row-start-3 border-2">
+              <Folder />
+          </div>
+          <div className="row-span-2 col-start-3 row-start-3 border-2">
+              <Folder />
+          </div>
+
+          <div className="col-span-3 row-span-2 col-start-1 row-start-5 border-2">5</div>
+
+          <div className="col-span-3 row-span-5 col-start-4 row-start-1 border-2 shadow-2xl flex items-center justify-center">
+              <Image src={imageSrc}
+                     alt='Profile Picture'
+                     width={500} height={500}
+                     className='h-full w-auto object-contain'
+              />
+          </div>
+          <div className="col-start-4 row-start-6 border-2">7</div>
+          <div className="col-start-5 row-start-6 border-2">8</div>
+          <div className="col-start-6 row-start-6 border-2">9</div>
       </div>
 
-      {/* {the right section} */}
-      <div className='flex-1 relative'>
-        <HeroCard />
-      </div>
-    </section>
   )
 }
 
