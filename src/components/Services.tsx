@@ -1,14 +1,15 @@
+'use client'
+
 import React from "react";
 import { HoverExpand_002 } from "./ui/skiper-ui/skiper53";
-import { div } from "framer-motion/client";
+import SplitText from "./SplitText";
 
 const Services = () => {
   const items = [
     {
       alt: "Tyler Durden",
       code: "Tyler Durden",
-      src:
-        "https://images.unsplash.com/photo-1732310216648-603c0255c000?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      src: "./images/frontend.png"
     },
     {
       alt: "The Narrator",
@@ -48,9 +49,29 @@ const Services = () => {
     },
   ];
 
+    const handleAnimationComplete = () => {
+        // Add any logic you want to execute when the animation completes
+        console.log('Split text animation completed');
+    };
+
   return (
-    <div id="services" className="scroll-mt-32">
-      <HoverExpand_002 items={items} className="w-full max-w-full px-2 bg-cream rounded-2xl py-2" />
+    <div id="services" className="scroll-mt-25">
+        <SplitText
+            text="My services"
+            className="text-5xl font-extrabold text-rust text-center py-7"
+            delay={50}
+            duration={0.5}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.5}
+            rootMargin="0px"
+            textAlign="center"
+            onLetterAnimationComplete={handleAnimationComplete}
+        />
+
+        <HoverExpand_002 items={items} className="w-full max-w-full px-2 bg-cream rounded-2xl py-2" />
     </div>
   );
 };

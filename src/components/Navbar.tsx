@@ -15,6 +15,14 @@ const Navbar = ({ onMenuStateChange }: NavbarProps) => {
   const { isMobile, ready, select } = useMobile({ mobileBreakpoint: 768 });
   const [activeSection, setActiveSection] = useState<string>('');
 
+  // Ensure activeSection is not reset to empty string when page loads
+  useEffect(() => {
+    if (activeSection === '') {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+      setActiveSection('home');
+    }
+  }, [activeSection]);
+
   // Track active section based on scroll position
   useEffect(() => {
     const sections = ['home', 'services', 'skills', 'projects', 'contact'];
@@ -22,7 +30,7 @@ const Navbar = ({ onMenuStateChange }: NavbarProps) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && entry.target.id !== '') {
             setActiveSection(entry.target.id);
           }
         });
@@ -50,7 +58,7 @@ const Navbar = ({ onMenuStateChange }: NavbarProps) => {
   });
 
   const navInnerClass = [
-    'bg-darker/80',
+    'bg-transparent',
     'backdrop-blur-md',
     'rounded-full',
     'shadow-lg',
@@ -58,7 +66,7 @@ const Navbar = ({ onMenuStateChange }: NavbarProps) => {
     select({
       mobile: 'px-6 py-2',
       tablet: 'px-8 py-2',
-      desktop: 'px-8 py-1'
+      desktop: 'px-1 py-1'
     })
   ].join(' ');
 
@@ -110,13 +118,7 @@ const Navbar = ({ onMenuStateChange }: NavbarProps) => {
               </Link>
             </div>
             <Link href='#home' className='shrink-0'>
-              <Image
-                src='/images/logo.png'
-                alt='Logo'
-                width={65}
-                height={65}
-                className='hover:scale-115 transition-transform rounded-3xl'
-              />
+              <h1 className='font-cursive text-2xl text-cream'>Tohamy</h1>
             </Link>
             <div className='flex items-center gap-4'>
               <Link href='#projects'>
@@ -166,13 +168,7 @@ const Navbar = ({ onMenuStateChange }: NavbarProps) => {
 
           {/* Center Logo */}
           <Link href='#home' className='shrink-0'>
-            <Image
-              src='/images/logo.png'
-              alt='Logo'
-              width={65}
-              height={65}
-              className='hover:scale-115 transition-transform rounded-2xl'
-            />
+              <NavButton name="Tohamy" className='font-cursive text-2xl text-rust' isActive={activeSection === 'home'} />
           </Link>
 
           {/* Right section */}
