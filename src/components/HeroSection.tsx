@@ -9,6 +9,7 @@ import { Contact, GithubIcon, FileText } from "lucide-react";
 import Link from "next/link";
 import SplitText from "./SplitText";
 import TextPressure from './TextPressure';
+import {SplittingText} from "@/components/animate-ui/primitives/texts/splitting";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -104,92 +105,40 @@ const HeroSection = () => {
     const [showContactTooltip, setShowContactTooltip] = useState(false);
     const [showResumeTooltip, setShowResumeTooltip] = useState(false);
 
-    // Handle animation complete callback
-    const handleAnimationComplete = () => {
-        // Add any logic you want to execute when the animation completes
-        console.log('Split text animation completed');
-    };
+
 
     return (
-        <div id="home" className="grid grid-cols-6 grid-rows-6 gap-4 pt-30 min-h-screen  pb-2 px-4">
-            <div id='first-paragraph' className="space-y-14 text-4xl font-cursive text-cream col-span-3 row-span-2 text-shadow-lg shadow-darker shadow-2xl rounded-3xl p-6 ">
-                <SplitText
-                    text="Hi there!, it seems like you are looking for a developer. Just explore my small world"
-                    className="text-3xl font-semibold text-center "
-                    delay={50}
-                    duration={0.5}
-                    ease="power3.out"
-                    splitType="words"
-                    from={{ opacity: 0, y: 40 }}
-                    to={{ opacity: 1, y: 0 }}
-                    threshold={0.1}
-                    rootMargin="-100px"
-                    textAlign="start"
-                    onLetterAnimationComplete={handleAnimationComplete}
-                />
-                <SplitText
-                    text="I'm Dr/Mahmoud Eltohamy Full-Stack Web & Mobile Developer"
-                    className="text-3xl text-rust font-semibold text-start items-start "
-                    delay={100}
-                    duration={0.6}
-                    ease="power3.out"
-                    splitType="words, chars"
-                    from={{ opacity: 0, y: 40 }}
-                    to={{ opacity: 1, y: 0 }}
-                    threshold={0.1}
-                    rootMargin="-100px"
-                    textAlign="start"
-                    onLetterAnimationComplete={handleAnimationComplete}
-                />
+        <div id="home" className="grid grid-cols-6 grid-rows-6 gap-4 pt-30 min-h-screen bg-darker pb-2 px-4">
+            <div id='first-paragraph' className="text-4xl font-cursive text-cream col-span-3 row-span-2 text-shadow-lg shadow-forest shadow-xl rounded-3xl p-6 flex flex-col gap-10">
+                <SplittingText text="Hi there!, it seems like you are looking for a developer. Just explore my small world" />
+                <SplittingText text="I'm Dr/Mahmoud Eltohamy Full-Stack Web & Mobile Developer" className='text-[#eeebe5]'/>
             </div>
 
             <div id='card' className="row-span-2 col-start-1 row-start-3 bg-card-one text-shadow-lg shadow-darker shadow-2xl rounded-3xl  flex items-center justify-center">
-                <h1 className=' text-center font-bold font-cursive pb-3'>
-                    <span className='text-8xl font-extrabold font-sans text-rust'>+3</span> <br/>
+                <h1 className='text-lg text-center font-extrabold font-cursive pb-3'>
+                    <span className='text-8xl font-extrabold font-sans text-rust'>+3</span> <br/> <br/>
                     years of Learning and Exp in <br/>Web Development
                 </h1>
             </div>
             <div id='card'  className="row-span-2 col-start-2 row-start-3 bg-card-large text-shadow-lg shadow-darker shadow-2xl rounded-3xl  flex items-center justify-center">
-                <h1 className='text-center font-bold font-cursive pb-6'>
-                    <span className='text-8xl font-extrabold font-sans text-rust'>+30</span> <br/>
+                <h1 className='text-lg text-center font-bold font-cursive pb-6'>
+                    <span className='text-8xl font-extrabold font-sans text-rust'>+30</span> <br/> <br/>
                     Projects worked on
                 </h1>
             </div>
             <div id='card'  className="row-span-2 col-start-3 row-start-3 bg-card-three text-shadow-lg shadow-darker shadow-2xl rounded-3xl  flex items-center justify-center">
-                <h1 className='text-center font-bold font-cursive '>
-                    <span className='text-8xl font-extrabold font-sans text-rust'>+1</span> <br/>
+                <h1 className='text-lg text-center font-bold font-cursive '>
+                    <span className='text-8xl font-extrabold font-sans text-rust'>+1</span> <br/> <br/>
                     years of Learning and Exp in <br/>Mobile Development
                 </h1>
             </div>
 
-            <div id='second-paragraph' className="col-span-3 row-span-2 col-start-1 row-start-5 text-4xl font-cursive text-cream  text-shadow-lg shadow-darker shadow-2xl rounded-3xl pt-4 pb-8 px-8 flex flex-col gap-2">
-                <TextPressure
-                    text="Are you ready to Transform Your Ideas into Reality"
-                    flex={true}
-                    alpha={false}
-                    stroke={false}
-                    width={true}
-                    weight={true}
-                    italic={false}
-                    textColor="#9D1F15"
-                    strokeColor="#ff0000"
-                    minFontSize={36}
-                />
-                <TextPressure
-                    text="⏳ Let's take a look into my small passionate hopes"
-                    flex={true}
-                    alpha={false}
-                    stroke={false}
-                    width={true}
-                    weight={true}
-                    italic={true}
-                    textColor="#EFFBBB"
-                    strokeColor="#ff0000"
-                    minFontSize={36}
-                />
+            <div id='second-paragraph' className="space-y-14 col-span-3 row-span-2 col-start-1 row-start-5 text-3xl font-cursive text-cream  text-shadow-lg shadow-forest shadow-xl rounded-3xl pt-17 pb-8 px-8 flex flex-col gap-1">
+                <SplittingText text="Are you ready to Transform Your Ideas into Reality" className='text-[#eeebe5]'/>
+                <SplittingText text="⏳ Let's take a look into my small passionate hopes" />
             </div>
 
-            <div className="col-span-3 row-span-5 col-start-4 row-start-1 drop-shadow-lg shadow-2xl rounded-2xl flex items-center justify-center overflow-hidden">
+            <div className="col-span-3 row-span-5 col-start-4 row-start-1 shadow-forest shadow-xl rounded-2xl flex items-center justify-center overflow-hidden">
                 <div
                     ref={imageContainerRef}
                     style={{
@@ -247,7 +196,7 @@ const HeroSection = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-start-4 row-start-6 drop-shadow-lg text-shadow-lg shadow-darker shadow-2xl rounded-3xl flex items-center justify-center relative">
+            <div className="col-start-4 row-start-6 drop-shadow-lg text-shadow-lg shadow-forest shadow-xl rounded-3xl flex items-center justify-center relative">
                 <div className="relative">
                     <Link href='https://github.com/motohamy1' target="_blank" rel="noopener noreferrer">
                         <GithubIcon
@@ -264,7 +213,7 @@ const HeroSection = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-start-5 row-start-6 drop-shadow-lg shadow-2xl text-shadow-lg shadow-darker rounded-3xl flex items-center justify-center relative">
+            <div className="col-start-5 row-start-6 drop-shadow-lg shadow-xl text-shadow-xl shadow-forest rounded-3xl flex items-center justify-center relative">
                 <div className="relative">
                     <Link href='#contact'>
                         <Contact
@@ -281,7 +230,7 @@ const HeroSection = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-start-6 row-start-6 drop-shadow-lg shadow-2xl text-shadow-lg shadow-darker rounded-3xl flex items-center justify-center relative">
+            <div className="col-start-6 row-start-6 drop-shadow-lg shadow-xl text-shadow-xl shadow-forest rounded-3xl flex items-center justify-center relative">
                 <div className="relative">
                     <Link href='./files/myTealResume.docx' target="_blank" >
                         <FileText

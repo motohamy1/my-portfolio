@@ -32,7 +32,7 @@ const TextPressure: React.FC<TextPressureProps> = ({
   textColor = '#9D1F15',
   strokeColor = '#FF0000',
   strokeWidth = 4,
-  className = 'font-extrabold',
+  className = 'font-bold',
   minFontSize = 54
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -140,7 +140,7 @@ const TextPressure: React.FC<TextPressureProps> = ({
           };
 
           const wdth = width ? Math.floor(getAttr(d, 5, 200)) : 100;
-          const wght = weight ? Math.floor(getAttr(d, 400, 200)) : 700;
+          const wght = weight ? Math.floor(getAttr(d, 400, 200)) : 500;
           const italVal = italic ? getAttr(d, 0, 1).toFixed(2) : '0';
           const alphaVal = alpha ? getAttr(d, 0, 1).toFixed(2) : '1';
 
@@ -157,7 +157,7 @@ const TextPressure: React.FC<TextPressureProps> = ({
   }, [width, weight, italic, alpha, words.length]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-full overflow-hidden bg-transparent flex items-start">
+    <div ref={containerRef} className="relative w-full h-1/2 overflow-hidden bg-transparent flex items-start">
       <style>{`
         @font-face {
           font-family: '${fontFamily}';
@@ -170,7 +170,7 @@ const TextPressure: React.FC<TextPressureProps> = ({
         }
         .stroke span::after {
           content: attr(data-char);
-          position: absolute;
+          position: relative;
           left: 0;
           top: -1;
           color: transparent;
@@ -192,7 +192,7 @@ const TextPressure: React.FC<TextPressureProps> = ({
           transform: `scale(1, ${scaleY})`,
           transformOrigin: 'top center',
           margin: 0,
-          fontWeight: 700,
+          fontWeight: 500,
           color: stroke ? undefined : textColor
         }}
       >
@@ -206,7 +206,7 @@ const TextPressure: React.FC<TextPressureProps> = ({
             className="inline-block"
             style={{ 
               marginRight: i < words.length - 1 ? '0.25em' : '0',
-              fontVariationSettings: "'wght' 700, 'wdth' 100, 'ital' 0"
+              fontVariationSettings: "'wght' 500, 'wdth' 100, 'ital' 0"
             }}
           >
             {word}

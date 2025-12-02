@@ -93,7 +93,7 @@ const SplitText: React.FC<SplitTextProps> = ({
           scrollTrigger: {
             trigger: el,
             start,
-            once: true,
+            toggleActions: 'play reverse play reverse',
             fastScrollEnd: true,
             anticipatePin: 0.4
           },
@@ -161,9 +161,7 @@ const SplitText: React.FC<SplitTextProps> = ({
       textAlign,
       wordWrap: 'break-word',
       willChange: 'transform, opacity',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: textAlign === 'center' ? 'center' : textAlign === 'right' ? 'flex-end' : 'flex-start'
+      display: 'block'
     };
     const classes = `split-parent overflow-hidden whitespace-normal ${className}`;
     const content = splitTextContent();

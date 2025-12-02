@@ -19,6 +19,7 @@ const DragCarousel: React.FC<DragCarouselProps> = ({ children, className = '' })
   const lastX = useRef(0)
   const lastTime = useRef(0)
   const animationRef = useRef<number | null>(null)
+  const hasMoved = useRef(false)
 
   const checkScrollButtons = useCallback(() => {
     if (!containerRef.current) return
@@ -38,8 +39,15 @@ const DragCarousel: React.FC<DragCarouselProps> = ({ children, className = '' })
   }, [])
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    // Don't interfere with link clicks
+    const target = e.target as HTMLElement
+    if (target.tagName === 'A' || target.closest('a')) {
+      return
+    }
+    
     if (!containerRef.current) return
     setIsDragging(true)
+    hasMoved.current = false
     setStartX(e.pageX - containerRef.current.offsetLeft)
     setScrollLeft(containerRef.current.scrollLeft)
     lastX.current = e.pageX
@@ -52,19 +60,25 @@ const DragCarousel: React.FC<DragCarouselProps> = ({ children, className = '' })
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!isDragging || !containerRef.current) return
-    e.preventDefault()
+    
     const x = e.pageX - containerRef.current.offsetLeft
-    const walk = (x - startX) * 1.5
-    containerRef.current.scrollLeft = scrollLeft - walk
+    const walk = Math.abs(x - startX)
+    
+    // Only consider it dragging if moved more than 5px
+    if (walk > 5) {
+      hasMoved.current = true
+      e.preventDefault()
+      containerRef.current.scrollLeft = scrollLeft - (x - startX) * 1.5
 
-    // Calculate velocity
-    const now = Date.now()
-    const dt = now - lastTime.current
-    if (dt > 0) {
-      setVelocity((lastX.current - e.pageX) / dt * 15)
+      // Calculate velocity
+      const now = Date.now()
+      const dt = now - lastTime.current
+      if (dt > 0) {
+        setVelocity((lastX.current - e.pageX) / dt * 15)
+      }
+      lastX.current = e.pageX
+      lastTime.current = now
     }
-    lastX.current = e.pageX
-    lastTime.current = now
   }, [isDragging, startX, scrollLeft])
 
   const handleMouseUp = useCallback(() => {
@@ -167,7 +181,7 @@ const DragCarousel: React.FC<DragCarouselProps> = ({ children, className = '' })
           <div 
             key={index} 
             className="flex-shrink-0"
-            style={{ pointerEvents: isDragging ? 'none' : 'auto' }}
+            style={{ pointerEvents: (isDragging && hasMoved.current) ? 'none' : 'auto' }}
           >
             {child}
           </div>

@@ -469,8 +469,25 @@ export default function DomeGallery({
       const originalDiv = overlay.querySelector('div');
       
       if (originalDiv) {
-        const div = originalDiv.cloneNode() as HTMLDivElement;
-        div.style.cssText = 'width: 100%; height: 100%; background-color: ' + originalDiv.style.backgroundColor;
+        const div = document.createElement('div');
+        div.style.cssText = 'width: 100%; height: 100%; background-color: ' + originalDiv.style.backgroundColor + '; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 2rem;';
+        
+        // Clone icon
+        const iconElement = originalDiv.querySelector('div:first-child');
+        if (iconElement) {
+          const clonedIcon = iconElement.cloneNode(true) as HTMLElement;
+          clonedIcon.style.cssText = 'width: 96px; height: 96px; display: flex; align-items: center; justify-content: center;';
+          div.appendChild(clonedIcon);
+        }
+        
+        // Clone label
+        const labelElement = originalDiv.querySelector('span');
+        if (labelElement) {
+          const clonedLabel = labelElement.cloneNode(true) as HTMLElement;
+          clonedLabel.style.cssText = `font-weight: bold; font-size: 2rem; text-align: center; user-select: none; line-height: 1.2; color: ${originalDiv.style.color || 'inherit'};`;
+          div.appendChild(clonedLabel);
+        }
+        
         animatingOverlay.appendChild(div);
       } else if (originalImg) {
         const img = originalImg.cloneNode() as HTMLImageElement;
@@ -598,10 +615,32 @@ export default function DomeGallery({
     const rawSrc = parent.dataset.src || (el.querySelector('img') as HTMLImageElement)?.src || '';
     const rawAlt = parent.dataset.alt || (el.querySelector('img') as HTMLImageElement)?.alt || '';
     const rawColor = parent.dataset.color;
+    const rawLabel = parent.dataset.label;
 
     if (rawColor) {
       const div = document.createElement('div');
-      div.style.cssText = `width:100%; height:100%; background-color:${rawColor};`;
+      div.style.cssText = `width:100%; height:100%; background-color:${rawColor}; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; padding:2rem;`;
+      
+      // Get the original icon and label from the card
+      const originalContent = el.querySelector('div');
+      if (originalContent) {
+        const iconElement = originalContent.querySelector('div:first-child');
+        const labelElement = originalContent.querySelector('span');
+        
+        if (iconElement) {
+          const clonedIcon = iconElement.cloneNode(true) as HTMLElement;
+          clonedIcon.style.cssText = 'width: 96px; height: 96px; display: flex; align-items: center; justify-content: center;';
+          div.appendChild(clonedIcon);
+        }
+        
+        if (labelElement && rawLabel) {
+          const labelDiv = document.createElement('span');
+          labelDiv.textContent = rawLabel;
+          labelDiv.style.cssText = `font-weight: bold; font-size: 2rem; text-align: center; user-select: none; line-height: 1.2; color: ${originalContent.style.color || 'inherit'};`;
+          div.appendChild(labelDiv);
+        }
+      }
+      
       overlay.appendChild(div);
     } else {
       const img = document.createElement('img');
@@ -704,7 +743,7 @@ export default function DomeGallery({
       width: calc(var(--item-width) * var(--item-size-x));
       height: calc(var(--item-height) * var(--item-size-y));
       position: absolute;
-      top: -999px;
+      top: -998px;
       bottom: -999px;
       left: -999px;
       right: -999px;
@@ -778,10 +817,11 @@ export default function DomeGallery({
       >
         <main
           ref={mainRef}
-          className="absolute inset-0 grid place-items-center overflow-hidden select-none bg-transparent"
+          className="absolute inset-0 grid place-items-center overflow-hidden select-none"
           style={{
             touchAction: 'none',
-            WebkitUserSelect: 'none'
+            WebkitUserSelect: 'none',
+            backgroundColor: '#0f2028'
           }}
         >
           <div className="stage">
@@ -868,34 +908,7 @@ export default function DomeGallery({
             </div>
           </div>
 
-          <div
-            className="absolute inset-0 m-auto z-[3] pointer-events-none"
-            style={{
-              backgroundImage: `radial-gradient(rgba(235, 235, 235, 0) 65%, var(--overlay-blur-color, ${overlayBlurColor}) 100%)`
-            }}
-          />
 
-          <div
-            className="absolute inset-0 m-auto z-[3] pointer-events-none"
-            style={{
-              WebkitMaskImage: `radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, ${overlayBlurColor}) 90%)`,
-              maskImage: `radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, ${overlayBlurColor}) 90%)`,
-              backdropFilter: 'blur(3px)'
-            }}
-          />
-
-          <div
-            className="absolute left-0 right-0 top-0 h-[120px] z-[5] pointer-events-none rotate-180"
-            style={{
-              background: `linear-gradient(to bottom, transparent, var(--overlay-blur-color, ${overlayBlurColor}))`
-            }}
-          />
-          <div
-            className="absolute left-0 right-0 bottom-0 h-[120px] z-[5] pointer-events-none"
-            style={{
-              background: `linear-gradient(to bottom, transparent, var(--overlay-blur-color, ${overlayBlurColor}))`
-            }}
-          />
 
           <div
             ref={viewerRef}

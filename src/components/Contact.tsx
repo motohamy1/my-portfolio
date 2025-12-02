@@ -3,7 +3,7 @@ import { Mail, MapPin, Phone, MessageCircle, Facebook, Twitter } from 'lucide-re
 
 const Contact = () => {
   return (
-    <section id="contact" className="bg-darker py-50 px-6 rounded-2xl ">
+    <section id="contact" className="bg-darker py-50 px-6 ">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
