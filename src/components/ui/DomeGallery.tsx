@@ -30,6 +30,7 @@ type DomeGalleryProps = {
   imageBorderRadius?: string;
   openedImageBorderRadius?: string;
   grayscale?: boolean;
+  className?: string
 };
 
 type ItemDef = {

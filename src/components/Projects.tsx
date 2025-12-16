@@ -72,15 +72,16 @@ const ProjectCard = ({ title, description, image, viewProject, github }: Project
 
 const Projects = () => {
   const webProjects = [
-    { title: "Stock Tracker", description: "Real-time stock tracking and analysis tools using modern MERN stack tools and AI ", image: "/images/stock market.jpg", viewProject: "https://stock-tracker-nine-ruddy.vercel.app/", github: "https://github.com" },
-    { title: "Drinks Animated website", description: "GSAP animations for a drinks website", image: "/images/GSAP website.jpg", viewProject: "https://example.com", github: "https://github.com" },
-    { title: "AI resume Analyser", description: "powerful free AI resume analyser tool that helps you get the best job offer", image: "/images/AI-resume.jpg", viewProject: "https://example.com", github: "https://github.com" },
-    { title: "Restaurant website", description: "Modern restaurant food delivery with fast response times", image: "/images/tasty.png", viewProject: "https://example.com", github: "https://github.com" },
-    { title: "Movies website", description: "Brings the latest Trending Movies and TV Shows with AI recommendations", image: "/images/movies-web.png", viewProject: "https://example.com", github: "https://github.com" },
+    { title: "Stock Tracker", description: "Real-time stock tracking and analysis tools using modern MERN stack tools and AI ", image: "/images/stock market.jpg", viewProject: "https://stock-tracker-nine-ruddy.vercel.app/", github: "https://github.com/motohamy1/stock-tracker" },
+    { title: "Medegypt Care Hub", description: "Simple and all-in-one website for Hypertensive and diabetic patients care hub ", image: "/images/medegypt-care.png", viewProject: "https://medegypt-care-hub.onrender.com/", github: "https://github.com/motohamy1/medegypt-care-hub" },
+    { title: "Drinks Animated website", description: "Satisfyingly smooth yet powerful animated website built with GSAP animations for a drinks website", image: "/images/GSAP website.jpg", viewProject: "https://smoothy-app.vercel.app/", github: "https://github.com/motohamy1/smoothy-app" },
+    { title: "AI resume Analyser", description: "powerful free AI resume analyser tool that helps you get the best job offer", image: "/images/AI-resume.jpg", viewProject: "https://ai-resume-analyzer-roan-phi.vercel.app/upload", github: "https://github.com/motohamy1/ai-resume-analyzer" },
+    { title: "Restaurant website", description: "Modern restaurant food delivery with fast response times", image: "/images/tasty.png", viewProject: "https://spongyfood.onrender.com/", github: "https://github.com/motohamy1/spongyfood" },
+    { title: "Movies website", description: "Brings the latest Trending Movies and TV Shows with AI recommendations", image: "/images/movies-web.png", viewProject: "https://movie-app-c8pp.onrender.com/", github: "https://github.com/motohamy1/Movie-app" },
   ]
 
   const mobileProjects = [
-    { title: "Movie app ", description: "Cross-platform movies mobile app with React Native", image: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=3070&auto=format&fit=crop", viewProject: "https://example.com", github: "https://github.com" },
+    { title: "Movie app ", description: "Cross-platform movies mobile app with React Native", image: "/images/movies-web.png", viewProject: "https://example.com", github: "https://github.com/motohamy1/mobile-movie-app" },
   ]
 
   return (

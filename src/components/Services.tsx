@@ -17,16 +17,16 @@ const Services = () => {
       description: "In my backend development work, I address common challenges such as slow server response times and data management inefficiencies. By implementing robust APIs, optimizing database queries, and ensuring scalable architecture, I help clients achieve faster, more reliable performance and a seamless user experience.",
     },
     {
+      src: "/images/mobile.png",
+        title: "Mobile Development Fun",
+        description: "Have you ever wondered how to create high-performance, cross-platform mobile apps with a native look and feel? React Native makes it possible by allowing developers to use JavaScript and React to build apps that run seamlessly on both iOS and Android. By combining this with powerful backend tools like Node.js, Firebase, and Supabase, you can create a full-stack mobile solution that’s both scalable and efficient.",
+    },
+    {
 
       src: "/images/responsive.png",
       title: "Responsive Design Tweeks",
       description: "In my web development practice, I prioritize creating responsive designs that ensure a seamless user experience across all devices. By employing fluid grids, flexible images, and media queries, I help clients reach their audience effectively, no matter what device they're using. This approach not only boosts engagement but also enhances accessibility and usability.",
     },
-    {
-      src: "/images/mobile.png",
-        title: "Mobile Development Fun",
-        description: "Have you ever wondered how to create high-performance, cross-platform mobile apps with a native look and feel? React Native makes it possible by allowing developers to use JavaScript and React to build apps that run seamlessly on both iOS and Android. By combining this with powerful backend tools like Node.js, Firebase, and Supabase, you can create a full-stack mobile solution that’s both scalable and efficient.",
-    }
   ];
 
 

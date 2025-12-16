@@ -3,7 +3,6 @@ import DomeGallery from './ui/DomeGallery'
 import { 
   Atom, Server, FileCode, FileJson, Wind, GitBranch, Github, FileType, Palette, Database, Triangle, Share2, Container, Cloud, PenTool, Layers, Zap, Move, Box, Flame, TestTube, Eye, BookOpen, Code, Package, Shield, Ghost, Smartphone, Compass, Activity, Tablet
 } from 'lucide-react';
-import {SplittingText} from "@/components/animate-ui/primitives/texts/splitting";
 import SplitText from "@/components/SplitText";
 
 const skills = [
@@ -50,21 +49,25 @@ const skills = [
 const Skills = () => {
   return (
       <>
-        <div id="skills" style={{ width: '100%', height: '100vh', overflow: 'hidden' }} className='scroll-mt-24 bg-darker flex flex-col'>
-            <SplitText
-                text="Skills, Tools & Technologies"
-                className="text-5xl  font-extrabold text-cream text-center py-7"
-                delay={100}
-                duration={0.7}
-                ease="power3.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.5}
-                rootMargin="0px"
-                textAlign="center"
-            />
-          <DomeGallery items={skills} />
+        <div id="skills" className='scroll-mt-24 bg-darker flex flex-col h-screen w-full overflow-hidden'>
+            <div className='flex-shrink-0'>
+                <SplitText
+                    text="Skills, Tools & Technologies"
+                    className="text-5xl  font-extrabold text-cream text-center pt-16 pb-2"
+                    delay={100}
+                    duration={0.7}
+                    ease="power3.out"
+                    splitType="chars"
+                    from={{ opacity: 0, y: 40 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0.5}
+                    rootMargin="0px"
+                    textAlign="center"
+                />
+            </div>
+            <div className='flex-1 h-full relative'>
+                <DomeGallery items={skills} />
+            </div>
         </div>
      </>
   )
