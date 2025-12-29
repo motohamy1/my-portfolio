@@ -232,7 +232,7 @@ const HeroSection = () => {
             </div>
             <div className="col-start-6 row-start-6 drop-shadow-lg shadow-xl text-shadow-xl shadow-forest rounded-3xl flex items-center justify-center relative">
                 <div className="relative">
-                    <Link href='./files/myTealResume.docx' target="_blank" >
+                    <Link href='./files/updated_developer_resume.pdf' target="_blank" >
                         <FileText
                             size={60}
                             className='text-cream hover:text-wine hover:scale-125 transition-all duration-300 ease-in-out'
