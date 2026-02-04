@@ -1,6 +1,5 @@
 'use client'
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
-import DragCarousel from "./ui/DragCarousel";
 import SplitText from "@/components/SplitText";
 import React from "react";
 
@@ -22,8 +21,8 @@ const ProjectCard = ({ title, description, image, viewProject, github }: Project
 
   return (
 
-    <CardContainer className="inter-var ">
-      <CardBody className="bg-cream relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-[20rem] sm:w-[25rem] h-auto rounded-2xl p-6 border">
+    <CardContainer className="inter-var">
+      <CardBody className="bg-cream relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-auto rounded-2xl p-6 border">
         <CardItem translateZ="50" className="text-xl font-bold text-neutral-600 dark:text-white">
           {title}
         </CardItem>
@@ -80,9 +79,9 @@ const Projects = () => {
     { title: "Movies website", description: "Brings the latest Trending Movies and TV Shows with AI recommendations", image: "/images/movies-web.png", viewProject: "https://movie-app-c8pp.onrender.com/", github: "https://github.com/motohamy1/Movie-app" },
   ]
 
-  const mobileProjects = [
-    { title: "Movie app ", description: "Cross-platform movies mobile app with React Native", image: "/images/movies-web.png", viewProject: "https://example.com", github: "https://github.com/motohamy1/mobile-movie-app" },
-  ]
+  // const mobileProjects = [
+  //   { title: "Movie app ", description: "Cross-platform movies mobile app with React Native", image: "/images/movies-web.png", viewProject: "https://example.com", github: "https://github.com/motohamy1/mobile-movie-app" },
+  // ]
 
   return (
     <div id='projects' className='scroll-mt-20 bg-darker py-10 px-6'>
@@ -102,18 +101,17 @@ const Projects = () => {
             />
         </div>
       {/* Web Development Section */}
-      <div className='mb-10'>
+      <div className='mb-5'>
         <h2 className='text-2xl font-bold text-cream mb-6 text-center'>Web Development</h2>
-        <p className='text-cream/60 text-center text-sm mb-4'>← Drag to explore →</p>
-        <DragCarousel>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 justify-items-stretch">
           {webProjects.map((project, index) => (
             <ProjectCard key={index} {...project} />
           ))}
-        </DragCarousel>
+        </div>
       </div>
 
       {/* Mobile Development Section */}
-      <div>
+      {/* <div>
         <h2 className='text-2xl font-bold text-cream mb-6 text-center'>Mobile Development</h2>
         <p className='text-cream/60 text-center text-sm mb-4'>← Drag to explore →</p>
         <DragCarousel>
@@ -121,7 +119,7 @@ const Projects = () => {
             <ProjectCard key={index} {...project} />
           ))}
         </DragCarousel>
-      </div>
+      </div> */}
     </div>
   )
 }

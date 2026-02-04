@@ -51,53 +51,53 @@ const HeroSection = () => {
 
         let flipped = false;
 
-        const handleMouseEnter = () => {
-            if (!flipped && frontImageRef.current && backImageRef.current) {
-                gsap.to(frontImageRef.current, {
-                    rotationY: -180,
-                    duration: 0.6,
-                    ease: "power2.inOut"
-                });
+        // const handleMouseEnter = () => {
+        //     if (!flipped && frontImageRef.current && backImageRef.current) {
+        //         gsap.to(frontImageRef.current, {
+        //             rotationY: -180,
+        //             duration: 0.6,
+        //             ease: "power2.inOut"
+        //         });
 
-                gsap.to(backImageRef.current, {
-                    rotationY: 0,
-                    duration: 0.6,
-                    ease: "power2.inOut"
-                });
-                flipped = true;
-            }
-        };
+        //         gsap.to(backImageRef.current, {
+        //             rotationY: 0,
+        //             duration: 0.6,
+        //             ease: "power2.inOut"
+        //         });
+        //         flipped = true;
+        //     }
+        // };
 
-        const handleMouseLeave = () => {
-            if (flipped && frontImageRef.current && backImageRef.current) {
-                gsap.to(frontImageRef.current, {
-                    rotationY: 0,
-                    duration: 0.6,
-                    ease: "power2.inOut"
-                });
+        // const handleMouseLeave = () => {
+        //     if (flipped && frontImageRef.current && backImageRef.current) {
+        //         gsap.to(frontImageRef.current, {
+        //             rotationY: 0,
+        //             duration: 0.6,
+        //             ease: "power2.inOut"
+        //         });
 
-                gsap.to(backImageRef.current, {
-                    rotationY: 180,
-                    duration: 0.6,
-                    ease: "power2.inOut"
-                });
-                flipped = false;
-            }
-        };
+        //         gsap.to(backImageRef.current, {
+        //             rotationY: 180,
+        //             duration: 0.6,
+        //             ease: "power2.inOut"
+        //         });
+        //         flipped = false;
+        //     }
+        // };
 
-        const container = containerRef.current;
-        container.addEventListener('mouseenter', handleMouseEnter);
-        container.addEventListener('mouseleave', handleMouseLeave);
+        // const container = containerRef.current;
+        // container.addEventListener('mouseenter', handleMouseEnter);
+        // container.addEventListener('mouseleave', handleMouseLeave);
 
         // Initial setup
-        if (backImageRef.current) {
-            gsap.set(backImageRef.current, { rotationY: 180 });
-        }
+        // if (backImageRef.current) {
+        //     gsap.set(backImageRef.current, { rotationY: 180 });
+        // }
 
-        return () => {
-            container.removeEventListener('mouseenter', handleMouseEnter);
-            container.removeEventListener('mouseleave', handleMouseLeave);
-        };
+        // return () => {
+        //     container.removeEventListener('mouseenter', handleMouseEnter);
+        //     container.removeEventListener('mouseleave', handleMouseLeave);
+        // };
     }, []);
 
     // State for tooltips
