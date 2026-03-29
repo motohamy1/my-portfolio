@@ -71,6 +71,8 @@ const ProjectCard = ({ title, description, image, viewProject, github }: Project
 
 const Projects = () => {
   const webProjects = [
+    { title: "StoreIt Cloud Platform", description: "A modern, highly-performant alternative to Google Drive for secure, seamless cloud storage management and file sharing.", image: "/images/storeit.png", viewProject: "https://store-management-7oczrwqt0-motohamys-projects.vercel.app/" },
+    { title: "Bookify", description: "An interactive AI library platform where you can upload your favorite books and discuss them with an intelligent AI voice companion.", image: "/images/bookify.png", viewProject: "https://bookify-kohl-six.vercel.app/" },
     { title: "Stock Tracker", description: "Real-time stock tracking and analysis tools using modern MERN stack tools and AI ", image: "/images/stock market.jpg", viewProject: "https://stock-tracker-nine-ruddy.vercel.app/", github: "https://github.com/motohamy1/stock-tracker" },
     { title: "Medegypt Care Hub", description: "Simple and all-in-one website for Hypertensive and diabetic patients care hub ", image: "/images/medegypt-care.png", viewProject: "https://medegypt-care-hub.onrender.com/", github: "https://github.com/motohamy1/medegypt-care-hub" },
     { title: "Drinks Animated website", description: "Satisfyingly smooth yet powerful animated website built with GSAP animations for a drinks website", image: "/images/GSAP website.jpg", viewProject: "https://smoothy-app.vercel.app/", github: "https://github.com/motohamy1/smoothy-app" },
