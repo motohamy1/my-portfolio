@@ -1,14 +1,27 @@
 'use client'
 import { Mail, MapPin, Phone, MessageCircle, Facebook, Twitter } from 'lucide-react'
+import SplitText from './SplitText'
 
 const Contact = () => {
   return (
-    <section id="contact" className="bg-darker py-30 px-6 ">
+    <section id="contact" className="bg-darker py-8 px-6 border-t border-cream/5 shadow-inner">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <p className="text-cream/70 text-sm mb-2">Contact us</p>
-          <h2 className="text-4xl font-bold text-cream mb-4">Get in touch</h2>
+            <SplitText
+                text="Get in touch"
+                className="text-3xl sm:text-5xl font-bold text-cream mb-4"
+                delay={50}
+                duration={0.4}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 40 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.5}
+                rootMargin="0px"
+                textAlign="center"
+            />
           <p className="text-cream/60">Feel free to reach out. I&apos;m always here to chat.</p>
         </div>
 

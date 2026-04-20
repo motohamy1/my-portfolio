@@ -1,10 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import NavButton from './ui/navButton';
-import BubbleMenu from './ui/BubbleMenu';
-import useMobile from '@/lib/useMobile';
 import { useState, useEffect } from 'react';
 
 interface NavbarProps {
@@ -12,13 +9,19 @@ interface NavbarProps {
 }
 
 const Navbar = ({ onMenuStateChange }: NavbarProps) => {
-  const { isMobile, ready, select } = useMobile({ mobileBreakpoint: 768 });
   const [activeSection, setActiveSection] = useState<string>('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Notify parent component if needed when mobile menu opens/closes
+  useEffect(() => {
+    if (onMenuStateChange) {
+      onMenuStateChange(isMobileMenuOpen);
+    }
+  }, [isMobileMenuOpen, onMenuStateChange]);
 
   // Ensure activeSection is not reset to empty string when page loads
   useEffect(() => {
     if (activeSection === '') {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
       setActiveSection('home');
     }
   }, [activeSection]);
@@ -51,132 +54,73 @@ const Navbar = ({ onMenuStateChange }: NavbarProps) => {
     return () => observer.disconnect();
   }, []);
 
-  const navWrapperClass = select({
-    mobile: 'top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl',
-    tablet: 'fixed top-8 left-1/2 -translate-x-1/2 z-50 w-[85%] max-w-5xl',
-    desktop: 'fixed top-8 left-1/2 -translate-x-1/2 z-50 w-[85%] max-w-5xl'
-  });
+  const navWrapperClass = 'fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-[85%] max-w-5xl transition-all duration-300';
+  const navInnerClass = 'bg-darker/60 md:bg-transparent backdrop-blur-xl rounded-3xl md:rounded-full shadow-lg border border-cream/20 px-4 py-3 md:px-1 md:py-1 transition-all duration-300';
 
-  const navInnerClass = [
-    'bg-transparent',
-    'backdrop-blur-md',
-    'rounded-full',
-    'shadow-lg',
-    'border border-cream/20',
-    select({
-      mobile: 'px-6 py-2',
-      tablet: 'px-8 py-2',
-      desktop: 'px-1 py-1'
-    })
-  ].join(' ');
-
-  // Menu items for BubbleMenu  
-  const menuItems = [
-    {
-      label: 'skills',
-      href: '#skills',
-      ariaLabel: 'Skills',
-      rotation: -5,
-      hoverStyles: { bgColor: '#09474b', textColor: '#ffffff' }
-    },
-    {
-      label: 'services',
-      href: '#services',
-      ariaLabel: 'Services',
-      rotation: 3,
-      hoverStyles: { bgColor: '#09474b', textColor: '#ffffff' }
-    },
-    {
-      label: 'projects',
-      href: '#projects',
-      ariaLabel: 'Projects',
-      rotation: 5,
-      hoverStyles: { bgColor: '#09474b', textColor: '#ffffff' }
-    },
-    {
-      label: 'contact',
-      href: '#contact',
-      ariaLabel: 'Contact',
-      rotation: -3,
-      hoverStyles: { bgColor: '#09474b', textColor: '#ffffff' }
-    }
-  ];
-
-  // Show BubbleMenu on mobile (only after client-side hydration)
-  if (!ready) {
-    // Return desktop navbar during SSR to avoid hydration mismatch
-    return (
-      <header className={navWrapperClass}>
-        <nav className={navInnerClass}>
-          <div className='flex items-center justify-between gap-4'>
-            <div className='flex items-center gap-4'>
-              <Link href='#services'>
-                <NavButton name="Services" />
-              </Link>
-              <Link href='#skills'>
-                <NavButton name="Skills" />
-              </Link>
-            </div>
-            <Link href='#home' className='shrink-0'>
-              <h1 className='font-cursive text-2xl text-cream'>Tohamy</h1>
-            </Link>
-            <div className='flex items-center gap-4'>
-              <Link href='#projects'>
-                <NavButton name="Projects" />
-              </Link>
-              <Link href='#contact'>
-                <NavButton name="Contact" />
-              </Link>
-            </div>
-          </div>
-        </nav>
-      </header>
-    );
-  }
-
-  if (isMobile) {
-    return (
-      <BubbleMenu
-        logo={<span style={{ fontWeight: 700 }}>The Clinic</span>}
-        items={menuItems}
-        menuAriaLabel="Toggle navigation"
-        menuBg="#d4cec4"
-        menuContentColor="#333333"
-        useFixedPosition={false}
-        animationEase="back.out(1.5)"
-        animationDuration={0.5}
-        staggerDelay={0.12}
-        onMenuClick={onMenuStateChange}
-      />
-    );
-  }
-
-  // Show regular navbar on desktop
   return (
     <header className={navWrapperClass}>
       <nav className={navInnerClass}>
-        <div className='flex items-center justify-between gap-4'>
+        {/* Mobile Header View */}
+        <div className="flex items-center justify-between md:hidden">
+            <Link href="#home" className="shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
+                <h1 className="font-cursive text-2xl text-rust font-bold pl-2">Tohamy</h1>
+            </Link>
+            <button 
+                className="text-cream p-2 focus:outline-none transition-transform hover:scale-110 active:scale-95"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
+            >
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {isMobileMenuOpen ? (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+            </button>
+        </div>
+
+        {/* Mobile Dropdown Options */}
+        <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-[300px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+            <div className="flex flex-col gap-1 pb-2">
+                <Link href="#services" onClick={() => setIsMobileMenuOpen(false)}>
+                    <NavButton name="Services" isActive={activeSection === 'services'} />
+                </Link>
+                <Link href="#skills" onClick={() => setIsMobileMenuOpen(false)}>
+                    <NavButton name="Skills" isActive={activeSection === 'skills'} />
+                </Link>
+                <Link href="#projects" onClick={() => setIsMobileMenuOpen(false)}>
+                    <NavButton name="Projects" isActive={activeSection === 'projects'} />
+                </Link>
+                <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+                    <NavButton name="Contact" isActive={activeSection === 'contact'} />
+                </Link>
+            </div>
+        </div>
+
+        {/* Desktop View */}
+        <div className="hidden md:flex items-center justify-between gap-4">
           {/* Left section */}
-          <div className='flex items-center gap-4'>
-            <Link href='#services'>
+          <div className="flex items-center gap-4">
+            <Link href="#services">
               <NavButton name="Services" isActive={activeSection === 'services'} />
             </Link>
-            <Link href='#skills'>
+            <Link href="#skills">
               <NavButton name="Skills" isActive={activeSection === 'skills'} />
             </Link>
           </div>
 
           {/* Center Logo */}
-          <Link href='#home' className='shrink-0'>
-              <NavButton name="Tohamy" className='font-cursive text-2xl text-rust' isActive={activeSection === 'home'} />
+          <Link href="#home" className="shrink-0">
+              <NavButton name="Tohamy" className="font-cursive text-2xl text-rust" isActive={activeSection === 'home'} />
           </Link>
 
           {/* Right section */}
-          <div className='flex items-center gap-4'>
-            <Link href='#projects'>
+          <div className="flex items-center gap-4">
+            <Link href="#projects">
               <NavButton name="Projects" isActive={activeSection === 'projects'} />
             </Link>
-            <Link href='#contact'>
+            <Link href="#contact">
               <NavButton name="Contact" isActive={activeSection === 'contact'} />
             </Link>
           </div>

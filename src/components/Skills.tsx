@@ -49,13 +49,13 @@ const skills = [
 const Skills = () => {
   return (
       <>
-        <div id="skills" className='scroll-mt-24 bg-darker flex flex-col h-screen w-full overflow-hidden'>
+        <div id="skills" className='scroll-mt-24 pb-4 bg-darker/90 flex flex-col h-screen w-full overflow-hidden border-t border-cream/10 shadow-inner'>
             <div className='flex-shrink-0'>
                 <SplitText
-                    text="Skills, Tools & Technologies"
-                    className="text-5xl  font-extrabold text-cream text-center pt-16 pb-2"
-                    delay={100}
-                    duration={0.7}
+                    text="Skills, Tools & Tech"
+                    className="text-3xl sm:text-5xl font-extrabold text-cream text-center pt-8 pb-2 px-4"
+                    delay={50}
+                    duration={0.4}
                     ease="power3.out"
                     splitType="chars"
                     from={{ opacity: 0, y: 40 }}

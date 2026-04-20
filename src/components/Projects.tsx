@@ -73,7 +73,7 @@ const Projects = () => {
   const webProjects = [
     { title: "StoreIt Cloud Platform", description: "A modern, highly-performant alternative to Google Drive for secure, seamless cloud storage management and file sharing.", image: "/images/storeit.png", viewProject: "https://store-management-7oczrwqt0-motohamys-projects.vercel.app/" },
     { title: "Bookify", description: "An interactive AI library platform where you can upload your favorite books and discuss them with an intelligent AI voice companion.", image: "/images/bookify.png", viewProject: "https://bookify-kohl-six.vercel.app/" },
-    { title: "Stock Tracker", description: "Real-time stock tracking and analysis tools using modern MERN stack tools and AI ", image: "/images/stock market.jpg", viewProject: "https://stock-tracker-nine-ruddy.vercel.app/", github: "https://github.com/motohamy1/stock-tracker" },
+    { title: "Stock Tracker", description: "Real-time stock tracking and analysis tools using modern MERN stack tools and AI ", image: "/images/stock market.jpg", viewProject: "https://stock-tracker01-47mkeyzg3-motohamys-projects.vercel.app/", github: "https://github.com/motohamy1/stock-tracker" },
     { title: "Medegypt Care Hub", description: "Simple and all-in-one website for Hypertensive and diabetic patients care hub ", image: "/images/medegypt-care.png", viewProject: "https://medegypt-care-hub.onrender.com/", github: "https://github.com/motohamy1/medegypt-care-hub" },
     { title: "Drinks Animated website", description: "Satisfyingly smooth yet powerful animated website built with GSAP animations for a drinks website", image: "/images/GSAP website.jpg", viewProject: "https://smoothy-app.vercel.app/", github: "https://github.com/motohamy1/smoothy-app" },
     { title: "AI resume Analyser", description: "powerful free AI resume analyser tool that helps you get the best job offer", image: "/images/AI-resume.jpg", viewProject: "https://ai-resume-analyzer-roan-phi.vercel.app/upload", github: "https://github.com/motohamy1/ai-resume-analyzer" },
@@ -86,13 +86,14 @@ const Projects = () => {
   // ]
 
   return (
-    <div id='projects' className='scroll-mt-20 bg-darker py-10 px-6'>
+    <div id='projects' className='scroll-mt-24 bg-darker/95 py-8 px-4 sm:px-6 lg:px-8 mx-auto border-t border-forest/20 shadow-inner'>
+      <div className="max-w-7xl mx-auto">
         <div>
             <SplitText
-                text="Projects I worked on"
-                className="text-5xl  font-extrabold text-cream text-center py-7"
-                delay={100}
-                duration={0.7}
+                text="Projects I've worked on"
+                className="text-3xl sm:text-5xl font-extrabold text-cream text-center py-4"
+                delay={50}
+                duration={0.4}
                 ease="power3.out"
                 splitType="chars"
                 from={{ opacity: 0, y: 40 }}
@@ -103,9 +104,9 @@ const Projects = () => {
             />
         </div>
       {/* Web Development Section */}
-      <div className='mb-5'>
-        <h2 className='text-2xl font-bold text-cream mb-6 text-center'>Web Development</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 justify-items-stretch">
+      <div className='mb-10'>
+        <h2 className='text-3xl font-bold font-cursive text-cream mb-10 text-center text-shadow-lg shadow-forest'>Web Development</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {webProjects.map((project, index) => (
             <ProjectCard key={index} {...project} />
           ))}
@@ -122,6 +123,7 @@ const Projects = () => {
           ))}
         </DragCarousel>
       </div> */}
+      </div>
     </div>
   )
 }

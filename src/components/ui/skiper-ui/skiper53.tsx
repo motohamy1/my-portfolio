@@ -55,6 +55,7 @@ const HoverExpand_002 = ({items,className,}: {
               transition={{ duration: 0.3, ease: "easeInOut" }}
               onHoverStart={() => setActiveImage(index)}
               onHoverEnd={() => setActiveImage(null)}
+              onClick={() => setActiveImage(activeImage === index ? null : index)}
             >
               {/* Image Container */}
               <motion.div
