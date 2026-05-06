@@ -52,7 +52,8 @@ const HeroSection = () => {
     const [showResumeTooltip, setShowResumeTooltip] = useState(false);
 
     return (
-        <div id="home" className="grid grid-cols-1 md:grid-cols-6 md:grid-rows-6 gap-6 pt-24 min-h-screen bg-darker pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div id="home" className="bg-black/95 min-h-screen pt-24 pb-8">
+            <div className="grid grid-cols-1 md:grid-cols-6 md:grid-rows-6 gap-6 px-4 sm:px-6 lg:px-8 2xl:px-12">
             
             <div id='first-paragraph' className="md:col-span-3 md:row-span-2 text-3xl sm:text-4xl font-cursive text-cream text-shadow-lg shadow-forest shadow-xl rounded-3xl p-6 sm:p-8 flex flex-col justify-center gap-6 md:gap-10">
                 <SplittingText text="Hi there!, it seems like you are looking for a developer. Just explore my small world" />
@@ -61,21 +62,21 @@ const HeroSection = () => {
 
             <div className="stat-card bg-card-one md:col-span-1 md:row-span-2 md:col-start-1 md:row-start-3 text-shadow-lg shadow-darker shadow-2xl rounded-3xl flex items-center justify-center p-6 md:p-3">
                 <h1 className='text-lg sm:text-xl text-center font-extrabold font-cursive pb-3'>
-                    <span className='text-6xl sm:text-7xl lg:text-8xl font-extrabold font-sans text-rust'>+3</span> <br/> <br/>
+                    <span className='text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold font-sans text-rust'>+3</span> <br/> <br/>
                     years of Learning and Exp in <br/>Web Development
                 </h1>
             </div>
             
             <div className="stat-card bg-card-large md:col-span-1 md:row-span-2 md:col-start-2 md:row-start-3 text-shadow-lg shadow-darker shadow-2xl rounded-3xl flex items-center justify-center p-6 md:p-3">
                 <h1 className='text-lg sm:text-xl text-center font-bold font-cursive pb-6'>
-                    <span className='text-6xl sm:text-7xl lg:text-8xl font-extrabold font-sans text-rust'>+30</span> <br/> <br/>
+                    <span className='text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold font-sans text-rust'>+30</span> <br/> <br/>
                     Projects worked on
                 </h1>
             </div>
             
             <div className="stat-card bg-card-three md:col-span-1 md:row-span-2 md:col-start-3 md:row-start-3 text-shadow-lg shadow-darker shadow-2xl rounded-3xl flex items-center justify-center p-6 md:p-3">
                 <h1 className='text-lg sm:text-xl text-center font-bold font-cursive '>
-                    <span className='text-6xl sm:text-7xl lg:text-8xl font-extrabold font-sans text-rust'>+1</span> <br/> <br/>
+                    <span className='text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold font-sans text-rust'>+1</span> <br/> <br/>
                     years of Learning and Exp in <br/>Mobile Development
                 </h1>
             </div>
@@ -85,7 +86,7 @@ const HeroSection = () => {
                 <SplittingText text="⏳ Let's take a look into my small passionate hopes" />
             </div>
 
-            <div className="md:col-span-3 md:row-span-5 md:col-start-4 md:row-start-1 shadow-forest shadow-xl rounded-2xl flex items-center justify-center overflow-hidden h-[400px] sm:h-[500px] md:h-full w-full order-first md:order-none relative">
+            <div className="md:col-span-3 md:row-span-5 md:col-start-4 md:row-start-1 shadow-forest shadow-xl rounded-2xl flex items-center justify-center overflow-hidden h-[350px] sm:h-[400px] md:h-full w-full order-first md:order-none relative">
                 <div
                     ref={imageContainerRef}
                     className="w-full h-full perspective-1000"
@@ -169,6 +170,7 @@ const HeroSection = () => {
                         Resume
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     )

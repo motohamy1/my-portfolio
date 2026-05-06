@@ -32,8 +32,8 @@ const Services = () => {
 
 
   return (
-    <div id="services" className="scroll-mt-24 bg-darker py-8 px-4 sm:px-6 lg:px-8 border-t border-cream/5 shadow-inner">
-      <div className="max-w-7xl mx-auto">
+    <div id="services" className="scroll-mt-24 bg-black/95 py-8 px-4 sm:px-6 lg:px-8 2xl:px-12 border-t border-cream/5 shadow-inner">
+      <div>
         <SplitText
             text="My services"
             className="text-3xl sm:text-5xl font-extrabold text-cream text-center py-4"
@@ -48,7 +48,7 @@ const Services = () => {
             textAlign="center"
         />
 
-        <HoverExpand_002 items={items} className="w-full max-w-full px-2 rounded-2xl py-2" />
+        <HoverExpand_002 items={items} className="w-full rounded-2xl py-2" />
       </div>
     </div>
   );

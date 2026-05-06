@@ -54,8 +54,8 @@ const Navbar = ({ onMenuStateChange }: NavbarProps) => {
     return () => observer.disconnect();
   }, []);
 
-  const navWrapperClass = 'fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-[85%] max-w-5xl transition-all duration-300';
-  const navInnerClass = 'bg-darker/60 md:bg-transparent backdrop-blur-xl rounded-3xl md:rounded-full shadow-lg border border-cream/20 px-4 py-3 md:px-1 md:py-1 transition-all duration-300';
+const navWrapperClass = 'fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-[85%] max-w-5xl transition-all duration-300';
+   const navInnerClass = 'bg-black/60 md:bg-black/40 backdrop-blur-xl rounded-3xl md:rounded-full shadow-lg border border-cream/20 px-4 py-3 md:px-1 md:py-1 transition-all duration-300';
 
   return (
     <header className={navWrapperClass}>

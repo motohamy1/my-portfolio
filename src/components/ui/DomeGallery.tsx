@@ -768,6 +768,36 @@ export default function DomeGallery({
         width: 100% !important;
       }
     }
+
+    @media (min-width: 1536px) {
+      .sphere-root {
+        --radius: 400px;
+      }
+    }
+    
+    @media (max-width: 1280px) {
+      .sphere-root {
+        --radius: 350px;
+      }
+    }
+    
+    @media (max-width: 1024px) {
+      .sphere-root {
+        --radius: 280px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .sphere-root {
+        --radius: 220px;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .sphere-root {
+        --radius: 180px;
+      }
+    }
     
     // body.dg-scroll-lock {
     //   position: fixed !important;
@@ -822,7 +852,7 @@ export default function DomeGallery({
           style={{
             touchAction: 'none',
             WebkitUserSelect: 'none',
-            backgroundColor: '#0f2028'
+            backgroundColor: '#05050a'
           }}
         >
           <div className="stage">

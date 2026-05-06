@@ -4,8 +4,8 @@ import SplitText from './SplitText'
 
 const Contact = () => {
   return (
-    <section id="contact" className="bg-darker py-8 px-6 border-t border-cream/5 shadow-inner">
-      <div className="max-w-6xl mx-auto">
+    <section id="contact" className="bg-black/95 py-8 px-4 sm:px-6 lg:px-8 2xl:px-12 border-t border-cream/5 shadow-inner">
+      <div>
         {/* Header */}
         <div className="text-center mb-12">
           <p className="text-cream/70 text-sm mb-2">Contact us</p>

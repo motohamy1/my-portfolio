@@ -86,8 +86,8 @@ const Projects = () => {
   // ]
 
   return (
-    <div id='projects' className='scroll-mt-24 bg-darker/95 py-8 px-4 sm:px-6 lg:px-8 mx-auto border-t border-forest/20 shadow-inner'>
-      <div className="max-w-7xl mx-auto">
+    <div id='projects' className='scroll-mt-24 bg-black/95 py-8 px-4 sm:px-6 lg:px-8 2xl:px-12 border-t border-forest/20 shadow-inner'>
+      <div>
         <div>
             <SplitText
                 text="Projects I've worked on"

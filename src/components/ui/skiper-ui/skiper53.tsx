@@ -2,11 +2,6 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
-import "swiper/css";
-import "swiper/css/effect-creative";
-import "swiper/css/pagination";
-import "swiper/css/autoplay";
-
 import { cn } from "@/lib/utils";
 
 const Skiper53 = () => {
@@ -35,7 +30,7 @@ const HoverExpand_002 = ({items,className,}: {
         duration: 0.3,
         delay: 0.5,
       }}
-      className={cn("relative w-full max-w-6xl px-5", className)}
+      className={cn("relative w-full px-5", className)}
     >
       <motion.div
         initial={{ opacity: 0 }}
