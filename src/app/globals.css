@@ -1,59 +1,27 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
-
 html {
   scroll-behavior: smooth;
 }
 
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-/* Custom Colors - Velvet Dark Theme */
+  /* Custom Colors - Velvet Dark Theme */
   --color-darker: #05050a;
   --color-cream: #EFFBBB;
   --color-wine: #722F37;
   --color-forest: #0a1a1d;
   --color-rust: #9D1F15;
   --color-back: #030306;
-  --color-second: #d4d5c5;
-  --color-third: #467e82;
   --color-card-one: #ffd8d1;
   --color-card-two: #dcf5ff;
   --color-card-three: #ffedca;
   --color-card-large: #fff0e5;
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -61,7 +29,6 @@ html {
 }
 
 body {
-  background-color: var(--color-back);
   background: radial-gradient(ellipse at top, var(--color-darker), var(--color-back));
   position: relative;
   min-height: 100vh;
@@ -77,7 +44,7 @@ body::before {
   height: 100%;
   pointer-events: none;
   z-index: -1;
-  background: 
+  background:
     radial-gradient(circle at 20% 30%, rgba(239, 251, 187, 0.03) 0%, transparent 50%),
     radial-gradient(circle at 80% 70%, rgba(114, 47, 55, 0.03) 0%, transparent 50%),
     radial-gradient(circle at 50% 50%, rgba(3, 3, 6, 0.8) 0%, transparent 70%);
@@ -90,91 +57,26 @@ body::before {
 
 :root {
   --radius: 0.625rem;
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.646 0.222 41.116);
-    --chart-2: oklch(0.6 0.118 184.704);
-    --chart-3: oklch(0.398 0.07 227.392);
-    --chart-4: oklch(0.828 0.189 84.429);
-    --chart-5: oklch(0.769 0.188 70.08);
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
-  }
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Fixed app bar bottom edge (~94px desktop) + breathing room.
+     Sections use scroll-mt-[var(--appbar-offset)] so anchor routing never lands under the pill. */
+  --appbar-offset: 112px;
+  /* Semantic tokens wired to the velvet palette (the only token system now). */
+  --background: #030306;
+  --foreground: #EFFBBB;
+  --border: rgba(239, 251, 187, 0.15);
+  --ring: #EFFBBB;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-    body {
+  body {
     @apply bg-background text-foreground;
-    }
+  }
 }
 
-/* Hide scrollbar for drag carousel */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
+/* Hero portrait flip (pending layout pass decision) */
 .image-container {
     perspective: 1000px;
     width: 100%;
@@ -194,4 +96,139 @@ body::before {
     transform: rotateY(180deg);
 }
 
+/* Services zig-zag (live mode: alternating rows, overlapped copy card) */
+.svc-zig { color: #EFFBBB; font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif; }
+.svc-zig__plate { background: #030306; border: 1px solid rgba(239, 251, 187, 0.14); border-radius: 16px; padding: 18px clamp(24px, 4vw, 56px); max-width: 1400px; margin: 0 auto 2rem; }
+.svc-zig__frame { background: #030306; border: 1px solid rgba(239, 251, 187, 0.14); border-radius: 16px; padding: clamp(24px, 4vw, 56px); max-width: 1400px; margin: 0 auto; }
+.svc-zig__rows { max-width: 80rem; margin: 2.5rem auto 0; display: flex; flex-direction: column; gap: 2.75rem; }
+.svc-zig__row { position: relative; }
+.svc-zig__media { position: relative; height: 13rem; border-radius: 1rem; overflow: hidden; background: #FFF0E5; }
+.svc-zig__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.svc-zig__card { position: relative; z-index: 1; margin: -2.25rem 1rem 0; padding: 1.5rem; background: #0A1A1D; border: 1px solid rgba(239, 251, 187, 0.14); border-radius: 1rem; }
+.svc-zig__title { margin: 0 0 0.5rem; font-size: 1.4rem; font-weight: 700; line-height: 1.25; }
+.svc-zig__desc { margin: 0; font-size: 1.02rem; line-height: 1.75; color: rgba(239, 251, 187, 0.78); max-width: 44ch; }
+@media (min-width: 768px) {
+  .svc-zig__row { display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: stretch; }
+  .svc-zig__media { grid-column: 1; grid-row: 1; height: auto; min-height: 17rem; }
+  .svc-zig__card { grid-column: 2; grid-row: 1; align-self: center; justify-self: stretch; margin: 0 0 0 -2.25rem; padding: 2rem 2.25rem; }
+  .svc-zig__row--flip { grid-template-columns: 0.85fr 1.15fr; }
+  .svc-zig__row--flip .svc-zig__media { grid-column: 2; }
+  .svc-zig__row--flip .svc-zig__card { grid-column: 1; align-self: center; margin: 0 -2.25rem 0 0; }
+}
 
+/* Desktop nav — accepted live variant (nb3): wordmark + tracked links + hire CTA.
+   Desktop-only: hidden below md to preserve the mobile dropdown. */
+.nb3 {
+    display: none;
+}
+@media (min-width: 768px) {
+    .nb3 {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        padding: 6px 8px 6px 20px;
+    }
+}
+.nb3 .nb3-mark { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
+.nb3 .nb3-mark b { color: #EFFBBB; font-weight: 800; font-size: 17px; letter-spacing: -0.02em; }
+.nb3 .nb3-mark small { color: #D0604D; font-weight: 700; font-size: 10.5px; letter-spacing: 0.14em; }
+.nb3 .nb3-links { display: flex; align-items: center; gap: 22px; margin-left: auto; }
+.nb3 .nb3-link { color: #EEEBE5; font-weight: 700; font-size: 12.5px; letter-spacing: 0.1em; text-decoration: none; padding: 8px 0; border-bottom: 1px solid transparent; transition: color 200ms ease-out, border-color 200ms ease-out; }
+.nb3 .nb3-link:hover { color: #EFFBBB; }
+.nb3 .nb3-link.nb3-on { color: #EFFBBB; border-bottom-color: #EFFBBB; }
+.nb3 .nb3-cta { background: #EFFBBB; color: #030306; font-weight: 700; font-size: 12.5px; letter-spacing: 0.06em; padding: 10px 20px; border-radius: 12px; text-decoration: none; white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { .nb3 * { transition: none; } }
+
+/* Hero — accepted live variant (hv1): asymmetric lead + portrait exhibit. 1400 column. */
+.hv1 { background: #030306; border: 1px solid rgba(239,251,187,0.14); border-radius: 16px; padding: clamp(24px, 4vw, 56px); display: grid; grid-template-columns: 1.08fr 0.92fr; gap: clamp(24px, 4vw, 56px); align-items: center; max-width: 1400px; margin: 0 auto; }
+.hv1 .hv1-status { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #EFFBBB; border: 1px solid rgba(239,251,187,0.25); border-radius: 9999px; padding: 6px 14px; }
+.hv1 .hv1-dot { width: 7px; height: 7px; border-radius: 9999px; background: #EFFBBB; }
+.hv1 h1 { color: #EFFBBB; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; font-size: clamp(2rem, 4.6vw, 3.4rem); line-height: 1.08; margin: 18px 0 14px; }
+.hv1 h1 em { font-style: normal; color: #D0604D; }
+.hv1 .hv1-sub { color: #EEEBE5; font-size: 1.02rem; line-height: 1.7; max-width: 46ch; text-wrap: pretty; }
+.hv1 .hv1-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.hv1 .hv1-primary { background: #EFFBBB; color: #030306; font-weight: 700; font-size: 14px; border-radius: 12px; padding: 12px 22px; text-decoration: none; }
+.hv1 .hv1-ghost { color: #EFFBBB; font-weight: 700; font-size: 14px; border: 1px solid rgba(239,251,187,0.3); border-radius: 12px; padding: 12px 22px; text-decoration: none; }
+.hv1 .hv1-proof { display: flex; gap: 28px; margin-top: 28px; border-top: 1px solid rgba(239,251,187,0.14); padding-top: 20px; }
+.hv1 .hv1-proof div span { display: block; color: #EFFBBB; font-weight: 800; font-size: 1.35rem; letter-spacing: -0.02em; }
+.hv1 .hv1-proof div small { color: #EEEBE5; font-size: 12.5px; opacity: 0.85; }
+.hv1 .hv1-fig { margin: 0; border-radius: 16px; overflow: hidden; border: 1px solid rgba(239,251,187,0.14); background: #05050a; box-shadow: 0 0 32px rgba(10,26,29,0.55); }
+.hv1 .hv1-fig img { display: block; width: 100%; height: min(560px, 62vw); object-fit: cover; border-radius: 50%; border: 2px solid #EFFBBB; }
+.hv1 .hv1-fig figcaption { display: flex; justify-content: space-between; gap: 12px; padding: 12px 16px; color: #EEEBE5; font-size: 12.5px; }
+.hv1 .hv1-fig figcaption b { color: #D0604D; font-weight: 700; }
+@media (max-width: 900px) { .hv1 { grid-template-columns: 1fr; } .hv1 .hv1-fig img { height: 340px; } }
+@media (prefers-reduced-motion: reduce) { .hv1 * { transition: none; } }
+
+/* impeccable adapt — tablet/mobile only. Desktop (>=1024px) intentionally untouched. */
+body {
+  min-height: 100svh;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+/* Safe-area: notch / home indicator, mobile only. Desktop unaffected. */
+@media (max-width: 1023px) {
+  body {
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
+
+/* Hero proof row: 3-up on desktop, stacked on phones. Tablet keeps row but wraps. */
+@media (max-width: 640px) {
+  .hv1 .hv1-proof { flex-direction: column; gap: 14px; }
+  .hv1 .hv1-proof div span { font-size: 1.1rem; }
+}
+@media (min-width: 641px) and (max-width: 1023px) {
+  .hv1 .hv1-proof { flex-wrap: wrap; row-gap: 16px; }
+}
+
+/* Hero portrait: desktop keeps 50% exhibit crop. Phones/tablets get a stable
+   aspect box with vault radius so the ellipse never distorts or overflows. */
+@media (max-width: 1023px) {
+  .hv1 .hv1-fig img {
+    height: auto;
+    aspect-ratio: 4 / 5;
+    border-radius: 24px;
+    border-width: 1px;
+  }
+  .hv1 { padding: clamp(20px, 5vw, 32px); gap: 20px; }
+  .hv1 h1 { font-size: clamp(1.75rem, 8vw, 2.4rem); overflow-wrap: break-word; }
+}
+
+/* CTA + nav touch targets: 44px minimum on touch, desktop padding untouched. */
+@media (pointer: coarse) {
+  .hv1 .hv1-primary, .hv1 .hv1-ghost { min-height: 44px; display: inline-flex; align-items: center; }
+  .nb3 .nb3-cta { padding: 12px 20px; }
+}
+@media (hover: none) {
+  .hv1 .hv1-primary, .hv1 .hv1-ghost { transition: none; }
+  .nb3 .nb3-link:hover { color: #EEEBE5; }
+}
+
+/* Contact: long email + links never overflow 320px; tap height 44px on touch. */
+@media (max-width: 1023px) {
+  #contact a[href^="mailto:"], #contact a[href^="tel:"], #contact a[href^="https://wa.me"] {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    display: inline-block;
+    max-width: 100%;
+  }
+}
+@media (pointer: coarse) {
+  #contact a[href^="mailto:"], #contact a[href^="tel:"], #contact a[href^="https://wa.me"] {
+    min-height: 44px;
+    line-height: 44px;
+  }
+}
+
+/* Project 3D tilt is mouse-only: kill hover lift on touch so cards never stick. */
+@media (hover: none) {
+  .group\/card { transform: none !important; }
+}
+
+/* Landscape phones: keep hero readable, dome never traps full height. */
+@media (max-width: 1023px) and (orientation: landscape) {
+  .hv1 .hv1-fig img { aspect-ratio: 16 / 9; }
+}
