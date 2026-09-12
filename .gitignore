@@ -44,3 +44,8 @@ next-env.d.ts
 /.qodo/
 /.zencoder/
 /.kiro/
+
+graphify
+graphify-out
+/graphify
+/graphify-out
