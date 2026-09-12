@@ -4,27 +4,9 @@ import Link from 'next/link';
 import NavButton from './ui/navButton';
 import { useState, useEffect } from 'react';
 
-interface NavbarProps {
-  onMenuStateChange?: (isOpen: boolean) => void;
-}
-
-const Navbar = ({ onMenuStateChange }: NavbarProps) => {
-  const [activeSection, setActiveSection] = useState<string>('');
+const Navbar = () => {
+  const [activeSection, setActiveSection] = useState<string>('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Notify parent component if needed when mobile menu opens/closes
-  useEffect(() => {
-    if (onMenuStateChange) {
-      onMenuStateChange(isMobileMenuOpen);
-    }
-  }, [isMobileMenuOpen, onMenuStateChange]);
-
-  // Ensure activeSection is not reset to empty string when page loads
-  useEffect(() => {
-    if (activeSection === '') {
-      setActiveSection('home');
-    }
-  }, [activeSection]);
 
   // Track active section based on scroll position
   useEffect(() => {
@@ -54,7 +36,7 @@ const Navbar = ({ onMenuStateChange }: NavbarProps) => {
     return () => observer.disconnect();
   }, []);
 
-const navWrapperClass = 'fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-[85%] max-w-5xl transition-all duration-300';
+const navWrapperClass = 'fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-[90%] max-w-7xl transition-all duration-300';
    const navInnerClass = 'bg-black/60 md:bg-black/40 backdrop-blur-xl rounded-3xl md:rounded-full shadow-lg border border-cream/20 px-4 py-3 md:px-1 md:py-1 transition-all duration-300';
 
   return (
@@ -99,30 +81,14 @@ const navWrapperClass = 'fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 w-[
         </div>
 
         {/* Desktop View */}
-        <div className="hidden md:flex items-center justify-between gap-4">
-          {/* Left section */}
-          <div className="flex items-center gap-4">
-            <Link href="#services">
-              <NavButton name="Services" isActive={activeSection === 'services'} />
-            </Link>
-            <Link href="#skills">
-              <NavButton name="Skills" isActive={activeSection === 'skills'} />
-            </Link>
-          </div>
-
-          {/* Center Logo */}
-          <Link href="#home" className="shrink-0">
-              <NavButton name="Tohamy" className="font-cursive text-2xl text-rust" isActive={activeSection === 'home'} />
-          </Link>
-
-          {/* Right section */}
-          <div className="flex items-center gap-4">
-            <Link href="#projects">
-              <NavButton name="Projects" isActive={activeSection === 'projects'} />
-            </Link>
-            <Link href="#contact">
-              <NavButton name="Contact" isActive={activeSection === 'contact'} />
-            </Link>
+        {/* Desktop View */}
+        <div className="nb3">
+          <Link className="nb3-mark" href="#home"><b>Tohamy</b><small>PORTFOLIO</small></Link>
+          <div className="nb3-links">
+            <Link className={`nb3-link ${activeSection === 'services' ? 'nb3-on' : ''}`} href="#services">SERVICES</Link>
+            <Link className={`nb3-link ${activeSection === 'skills' ? 'nb3-on' : ''}`} href="#skills">SKILLS</Link>
+            <Link className={`nb3-link ${activeSection === 'projects' ? 'nb3-on' : ''}`} href="#projects">PROJECTS</Link>
+            <Link className="nb3-cta" href="#contact">HIRE ME</Link>
           </div>
         </div>
       </nav>

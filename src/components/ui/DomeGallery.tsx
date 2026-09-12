@@ -710,7 +710,7 @@ export default function DomeGallery({
 
   const cssStyles = `
     .sphere-root {
-      --radius: 520px;
+      --radius: 442px;
       --viewer-pad: 72px;
       --circ: calc(var(--radius) * 3.14);
       --rot-y: calc((360deg / var(--segments-x)) / 2);
@@ -771,31 +771,31 @@ export default function DomeGallery({
 
     @media (min-width: 1536px) {
       .sphere-root {
-        --radius: 400px;
+        --radius: 340px;
       }
     }
     
     @media (max-width: 1280px) {
       .sphere-root {
-        --radius: 350px;
+        --radius: 298px;
       }
     }
     
     @media (max-width: 1024px) {
       .sphere-root {
-        --radius: 280px;
+        --radius: 238px;
       }
     }
     
     @media (max-width: 768px) {
       .sphere-root {
-        --radius: 220px;
+        --radius: 187px;
       }
     }
     
     @media (max-width: 640px) {
       .sphere-root {
-        --radius: 180px;
+        --radius: 153px;
       }
     }
     
@@ -827,6 +827,23 @@ export default function DomeGallery({
       inset: 10px;
       pointer-events: none;
     }
+    .dg-card {
+      padding: 6%;
+      gap: clamp(2px, calc(var(--item-width) * 0.1), 8px);
+      min-width: 0;
+    }
+    .dg-icon {
+      width: 34%;
+      max-width: 40px;
+      aspect-ratio: 1;
+      flex: 0 0 auto;
+    }
+    .dg-label {
+      font-size: clamp(8px, calc((var(--item-width) * var(--item-size-x, 2) - 20px) * 0.15), 15px);
+      line-height: 1.15;
+      max-width: 100%;
+      overflow-wrap: break-word;
+    }
   `;
 
   return (
@@ -850,7 +867,7 @@ export default function DomeGallery({
           ref={mainRef}
           className="absolute inset-0 grid place-items-center overflow-hidden select-none"
           style={{
-            touchAction: 'none',
+            touchAction: 'pan-y',
             WebkitUserSelect: 'none',
             backgroundColor: '#05050a'
           }}
@@ -910,13 +927,13 @@ export default function DomeGallery({
                     }}
                   >
                     {it.color ? (
-                      <div 
-                        className="w-full h-full flex flex-col items-center justify-center p-2 text-center gap-2"
+                      <div
+                        className="dg-card w-full h-full flex flex-col items-center justify-center text-center"
                         style={{ backgroundColor: it.color, color: it.textColor || 'inherit' }}
                       >
-                        {it.icon && <div className="w-8 h-8 flex items-center justify-center">{it.icon}</div>}
+                        {it.icon && <div className="dg-icon flex items-center justify-center">{it.icon}</div>}
                         {it.label && (
-                          <span className="font-bold text-sm sm:text-base select-none leading-tight">
+                          <span className="dg-label font-bold select-none">
                             {it.label}
                           </span>
                         )}
