@@ -1,11 +1,11 @@
 'use client'
-import { Mail, MapPin, Phone, MessageCircle, Facebook, Twitter } from 'lucide-react'
+import { Mail, MapPin, Phone, MessageCircle } from 'lucide-react'
 import SplitText from './SplitText'
 
 const Contact = () => {
   return (
-    <section id="contact" className="bg-black/95 py-8 px-4 sm:px-6 lg:px-8 2xl:px-12 border-t border-cream/5 shadow-inner">
-      <div>
+    <section id="contact" className="scroll-mt-[var(--appbar-offset)] bg-black/95 py-8 px-4 sm:px-6 lg:px-8 2xl:px-12 border-t border-cream/5">
+      <div className="mx-auto max-w-[1400px]">
         {/* Header */}
         <div className="text-center mb-12">
           <p className="text-cream/70 text-sm mb-2">Contact us</p>
@@ -26,7 +26,7 @@ const Contact = () => {
         </div>
 
         {/* Contact Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Email */}
           <div className="flex flex-col items-center text-center">
             <div className="bg-wine p-4 rounded-xl mb-4">
@@ -34,7 +34,7 @@ const Contact = () => {
             </div>
             <h3 className="text-cream font-semibold text-lg mb-2">Email</h3>
             <p className="text-cream/60 text-sm mb-2">I&apos;m here to help with any questions.</p>
-            <a href="mailto:eltohamym660@gmail.com" className="text-cream hover:text-wine transition-colors">
+            <a href="mailto:eltohamym660@gmail.com" className="text-cream hover:text-wine transition-colors break-all">
               eltohamym660@gmail.com
             </a>
           </div>
@@ -81,40 +81,23 @@ const Contact = () => {
             </a>
           </div>
 
-          {/* Facebook */}
-          <div className="flex flex-col items-center text-center">
-            <div className="bg-wine p-4 rounded-xl mb-4">
-              <Facebook className="w-6 h-6 text-cream" />
-            </div>
-            <h3 className="text-cream font-semibold text-lg mb-2">Facebook</h3>
-            <p className="text-cream/60 text-sm mb-2">Connect with me on Facebook.</p>
-            <a 
-              href="https://facebook.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-cream hover:text-wine transition-colors"
-            >
-              Follow me
-            </a>
-          </div>
-
-          {/* Twitter */}
-          <div className="flex flex-col items-center text-center">
-            <div className="bg-wine p-4 rounded-xl mb-4">
-              <Twitter className="w-6 h-6 text-cream" />
-            </div>
-            <h3 className="text-cream font-semibold text-lg mb-2">Twitter</h3>
-            <p className="text-cream/60 text-sm mb-2">Follow me on Twitter.</p>
-            <a 
-              href="https://twitter.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-cream hover:text-wine transition-colors"
-            >
-              Follow me
-            </a>
-          </div>
         </div>
+
+        <footer className="border-t border-cream/10 pt-6 pb-2 text-center text-xs text-cream/60">
+          <p>© {new Date().getFullYear()} Mahmoud Eltohamy · Hippocamp</p>
+          <p className="mt-1">
+            Services accordion adapted from{' '}
+            <a
+              href="https://gxuri.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-cream transition-colors"
+            >
+              Skiper UI
+            </a>
+            .
+          </p>
+        </footer>
       </div>
     </section>
   )

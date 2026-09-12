@@ -24,32 +24,74 @@ export const CardContainer = ({
   containerClassName?: string;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
   const [isMouseEntered, setIsMouseEntered] = useState(false);
 
+  useEffect(() => {
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  const tiltOK = () => {
+    if (typeof window === "undefined") return false;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
+    if (window.matchMedia("(hover: none)").matches) return false;
+    return true;
+  };
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
+    if (!tiltOK() || !containerRef.current) return;
+    // Freeze tilt while the pointer is over an action (link/button) or the
+    // card's footer so the buttons never shift under the cursor — that chase
+    // was the flicker.
+    const target = e.target as HTMLElement | null;
+    if (
+      target &&
+      typeof target.closest === "function" &&
+      target.closest("a,button,[data-tilt-freeze]")
+    ) {
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+      return;
+    }
     const { left, top, width, height } =
       containerRef.current.getBoundingClientRect();
     const x = (e.clientX - left - width / 2) / 25;
     const y = (e.clientY - top - height / 2) / 25;
-    containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    const el = containerRef.current;
+    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      // No eased transition during tracking — the old
+      // `transition-all duration-200` lagged each mousemove and made
+      // buttons under the cursor flicker as the card chased them.
+      el.style.transition = "transform 0.05s linear";
+      el.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    });
   };
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseEnter = () => {
     setIsMouseEntered(true);
-    if (!containerRef.current) return;
+    if (!containerRef.current || !tiltOK()) return;
+    containerRef.current.style.transition = "transform 0.15s ease-out";
   };
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseLeave = () => {
     if (!containerRef.current) return;
     setIsMouseEntered(false);
-    containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
+    const el = containerRef.current;
+    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    // Smooth reset only on leave — never during tracking.
+    el.style.transition = "transform 0.4s ease-out";
+    el.style.transform = `rotateY(0deg) rotateX(0deg)`;
   };
   return (
     <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
       <div
         className={cn(
-          "py-20 flex items-center justify-center",
+          "py-8 md:py-20 flex items-center justify-center",
           containerClassName
         )}
         style={{
@@ -62,7 +104,7 @@ export const CardContainer = ({
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           className={cn(
-            "flex items-center justify-center relative transition-all duration-200 ease-linear",
+            "flex items-center justify-center relative will-change-transform",
             className
           )}
           style={{
@@ -121,10 +163,6 @@ export const CardItem = ({
   const ref = useRef<HTMLElement>(null);
   const [isMouseEntered] = useMouseEnter();
 
-  useEffect(() => {
-    handleAnimations();
-  }, [isMouseEntered]);
-
   const handleAnimations = () => {
     if (!ref.current) return;
     if (isMouseEntered) {
@@ -133,6 +171,10 @@ export const CardItem = ({
       ref.current.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
     }
   };
+
+  useEffect(() => {
+    handleAnimations();
+  }, [isMouseEntered]);
 
   return (
     <Tag

@@ -4,34 +4,17 @@ import {
   Atom,
   Server,
   FileCode,
-  FileJson,
   Wind,
   GitBranch,
-  Github,
-  FileType,
-  Palette,
   Database,
-  Triangle,
-  Share2,
-  Container,
-  Cloud,
   PenTool,
-  Layers,
   Zap,
-  Move,
+  Smartphone,
   Box,
   Flame,
-  TestTube,
-  Eye,
-  BookOpen,
-  Code,
-  Package,
-  Shield,
-  Ghost,
-  Smartphone,
-  Compass,
-  Activity,
-  Tablet,
+  Triangle,
+  Leaf,
+  Wand2,
 } from "lucide-react";
 import SplitText from "@/components/SplitText";
 
@@ -41,192 +24,48 @@ const skills = [
     color: "#ffd8d1",
     textColor: "#5c2b29",
     icon: <Triangle className="w-full h-full fill-current" />,
-  }, // card-one
+  },
   {
     label: "React",
     color: "#dcf5ff",
     textColor: "#1e3a8a",
     icon: <Atom className="w-full h-full" />,
-  }, // card-two
-  {
-    label: "Node.js",
-    color: "#ffedca",
-    textColor: "#78350f",
-    icon: <Server className="w-full h-full" />,
-  }, // card-three
+  },
   {
     label: "TypeScript",
     color: "#fff0e5",
     textColor: "#2e1065",
     icon: <FileCode className="w-full h-full" />,
-  }, // card-large
+  },
   {
-    label: "JavaScript",
-    color: "#EFFBBB",
-    textColor: "#14532d",
-    icon: <FileJson className="w-full h-full" />,
-  }, // cream
+    label: "Node.js",
+    color: "#ffedca",
+    textColor: "#78350f",
+    icon: <Server className="w-full h-full" />,
+  },
   {
     label: "Tailwind CSS",
     color: "#2C5364",
     textColor: "#ffffff",
     icon: <Wind className="w-full h-full" />,
-  }, // wine
-  {
-    label: "Git",
-    color: "#EFFBBB",
-    textColor: "#14532d",
-    icon: <GitBranch className="w-full h-full" />,
-  }, // forest
-  {
-    label: "GitHub",
-    color: "#ADA996",
-    textColor: "#ffffff",
-    icon: <Github className="w-full h-full" />,
-  }, // rust
-  {
-    label: "HTML5",
-    color: "#ffd8d1",
-    textColor: "#9a3412",
-    icon: <FileType className="w-full h-full" />,
-  },
-  {
-    label: "CSS3",
-    color: "#dcf5ff",
-    textColor: "#1e40af",
-    icon: <Palette className="w-full h-full" />,
   },
   {
     label: "PostgreSQL",
-    color: "#ffedca",
-    textColor: "#334155",
+    color: "#EFFBBB",
+    textColor: "#14532d",
     icon: <Database className="w-full h-full" />,
-  },
-  {
-    label: "Prisma",
-    color: "#fff0e5",
-    textColor: "#0f172a",
-    icon: <Triangle className="w-full h-full" />,
-  },
-  {
-    label: "GraphQL",
-    color: "#EFFBBB",
-    textColor: "#db2777",
-    icon: <Share2 className="w-full h-full" />,
-  },
-  {
-    label: "Docker",
-    color: "#2C5364",
-    textColor: "#ffffff",
-    icon: <Container className="w-full h-full" />,
-  },
-  {
-    label: "AWS",
-    color: "#fbf7ba",
-    textColor: "#854d0e",
-    icon: <Cloud className="w-full h-full" />,
-  },
-  {
-    label: "Figma",
-    color: "#ADA996",
-    textColor: "#ffffff",
-    icon: <PenTool className="w-full h-full" />,
-  },
-  {
-    label: "Redux",
-    color: "#ffd8d1",
-    textColor: "#5b21b6",
-    icon: <Layers className="w-full h-full" />,
-  },
-  {
-    label: "Zustand",
-    color: "#dcf5ff",
-    textColor: "#1e3a8a",
-    icon: <Ghost className="w-full h-full" />,
-  },
-  {
-    label: "Framer Motion",
-    color: "#ffedca",
-    textColor: "#be185d",
-    icon: <Move className="w-full h-full" />,
-  },
-  {
-    label: "Three.js",
-    color: "#fff0e5",
-    textColor: "#000000",
-    icon: <Box className="w-full h-full" />,
-  },
-  {
-    label: "Vercel",
-    color: "#EFFBBB",
-    textColor: "#000000",
-    icon: <Triangle className="w-full h-full fill-black" />,
   },
   {
     label: "Supabase",
     color: "#2C5364",
     textColor: "#ffffff",
-    icon: <Database className="w-full h-full" />,
+    icon: <Leaf className="w-full h-full" />,
   },
   {
     label: "Firebase",
     color: "#EFFBBB",
-    textColor: "#000000",
+    textColor: "#14532d",
     icon: <Flame className="w-full h-full" />,
-  },
-  {
-    label: "Jest",
-    color: "#ADA996",
-    textColor: "#ffffff",
-    icon: <TestTube className="w-full h-full" />,
-  },
-  {
-    label: "Cypress",
-    color: "#ffd8d1",
-    textColor: "#064e3b",
-    icon: <Eye className="w-full h-full" />,
-  },
-  {
-    label: "Storybook",
-    color: "#dcf5ff",
-    textColor: "#be185d",
-    icon: <BookOpen className="w-full h-full" />,
-  },
-  {
-    label: "Sass",
-    color: "#ffedca",
-    textColor: "#db2777",
-    icon: <Code className="w-full h-full" />,
-  },
-  {
-    label: "Webpack",
-    color: "#fff0e5",
-    textColor: "#1e3a8a",
-    icon: <Package className="w-full h-full" />,
-  },
-  {
-    label: "Vite",
-    color: "#EFFBBB",
-    textColor: "#6b21a8",
-    icon: <Zap className="w-full h-full" />,
-  },
-  {
-    label: "Bun",
-    color: "#2C5364",
-    textColor: "#ffffff",
-    icon: <Package className="w-full h-full" />,
-  },
-  {
-    label: "Python",
-    color: "#fbf7ba",
-    textColor: "#1e3a8a",
-    icon: <Code className="w-full h-full" />,
-  },
-  {
-    label: "Django",
-    color: "#ADA996",
-    textColor: "#ffffff",
-    icon: <Shield className="w-full h-full" />,
   },
   {
     label: "React Native",
@@ -237,32 +76,32 @@ const skills = [
   {
     label: "Expo",
     color: "#fff0e5",
-    textColor: "#000000",
+    textColor: "#2e1065",
     icon: <Zap className="w-full h-full" />,
   },
   {
-    label: "React Navigation",
+    label: "Three.js",
     color: "#ffedca",
     textColor: "#78350f",
-    icon: <Compass className="w-full h-full" />,
+    icon: <Box className="w-full h-full" />,
   },
   {
-    label: "Reanimated",
+    label: "GSAP",
     color: "#ffd8d1",
     textColor: "#5c2b29",
-    icon: <Activity className="w-full h-full" />,
+    icon: <Wand2 className="w-full h-full" />,
   },
   {
-    label: "Android",
-    color: "#EFFBBB",
-    textColor: "#14532d",
-    icon: <Smartphone className="w-full h-full" />,
-  },
-  {
-    label: "iOS",
+    label: "Figma",
     color: "#dcf5ff",
     textColor: "#1e3a8a",
-    icon: <Tablet className="w-full h-full" />,
+    icon: <PenTool className="w-full h-full" />,
+  },
+  {
+    label: "Git",
+    color: "#EFFBBB",
+    textColor: "#14532d",
+    icon: <GitBranch className="w-full h-full" />,
   },
 ];
 
@@ -271,9 +110,9 @@ const Skills = () => {
     <>
       <div
         id="skills"
-        className="scroll-mt-24 pb-4 bg-black/95 flex flex-col h-screen w-full overflow-hidden border-t border-cream/10 shadow-inner"
+        className="scroll-mt-[var(--appbar-offset)] pb-4 bg-black/95 flex flex-col h-[100svh] md:h-screen min-h-[620px] w-full overflow-hidden border-t border-cream/10 px-4 sm:px-6 lg:px-8 2xl:px-12"
       >
-        <div className="flex-shrink-0 max-w-7xl mx-auto w-full">
+        <div className="flex-shrink-0 max-w-[1400px] mx-auto w-full">
           <SplitText
             text="Skills, Tools & Tech"
             className="text-3xl sm:text-5xl font-extrabold text-cream text-center pt-8 pb-2 px-4"
@@ -288,8 +127,8 @@ const Skills = () => {
             textAlign="center"
           />
         </div>
-        <div className="flex-1 h-full w-full max-w-7xl mx-auto relative">
-          <DomeGallery items={skills} fit={0.7} />
+        <div className="flex-1 h-full w-full max-w-[1400px] mx-auto relative">
+          <DomeGallery items={skills} fit={0.506} minRadius={150} maxRadius={620} />
         </div>
       </div>
     </>

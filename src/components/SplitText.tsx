@@ -51,7 +51,7 @@ const SplitText: React.FC<SplitTextProps> = ({
       try {
         await document.fonts.ready;
         setFontsLoaded(true);
-      } catch (error) {
+      } catch {
         // Fonts failed to load, proceed anyway
         setFontsLoaded(true);
       }
