@@ -207,6 +207,32 @@ body {
   .nb3 .nb3-link:hover { color: #EEEBE5; }
 }
 
+/* Tablet: the exhibit portrait goes single-column full-width at <=900px, which
+   made it ~960px tall. Cap its width so the portrait keeps its 4:5 crop without
+   dominating the fold. Desktop two-column hero is untouched. */
+@media (min-width: 641px) and (max-width: 1023px) {
+  .hv1 .hv1-fig { max-width: 440px; margin-left: auto; margin-right: auto; }
+}
+
+/* Notch / status bar: with viewport-fit=cover the fixed app bar and hero top
+   sit under the status bar on notched phones. Clear safe-area-inset-top only on
+   tablet/mobile, preserving the existing 1rem/2rem offsets; desktop (>=1024px)
+   keeps its current offsets exactly. */
+@media (max-width: 767px) {
+  header.fixed { top: calc(1rem + env(safe-area-inset-top, 0px)); }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  header.fixed { top: calc(2rem + env(safe-area-inset-top, 0px)); }
+}
+@media (max-width: 1023px) {
+  #home { padding-top: calc(6rem + env(safe-area-inset-top, 0px)); }
+}
+
+/* Anchor scrolling is a motion choice: honor reduced-motion. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 /* Contact: long email + links never overflow 320px; tap height 44px on touch. */
 @media (max-width: 1023px) {
   #contact a[href^="mailto:"], #contact a[href^="tel:"], #contact a[href^="https://wa.me"] {

@@ -1,9 +1,14 @@
 'use client'
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 import SplitText from "@/components/SplitText";
 import { Github } from "lucide-react";
+
+// Marks the auto-scroll duplicate cards. They are hidden from assistive tech
+// and keyboard tab order, but stay hit-testable so their tilt/hover animation
+// matches the originals. (Using `inert` would disable hover via pointer-events.)
+const DuplicateContext = createContext(false);
 
 interface ProjectCardProps {
   title: string;
@@ -11,12 +16,21 @@ interface ProjectCardProps {
   image: string;
   viewProject?: string;
   github?: string;
+  portrait?: boolean;
+  placeholder?: boolean;
 }
 
-const ProjectCard = ({ title, description, image, viewProject, github }: ProjectCardProps) => {
+const ProjectCard = ({ title, description, image, viewProject, github, portrait = false, placeholder = false }: ProjectCardProps) => {
+  const isDuplicate = useContext(DuplicateContext);
   const [imgError, setImgError] = useState(false);
   const hasView = Boolean(viewProject && viewProject !== "#");
   const hasGithub = Boolean(github && github !== "#");
+  const imageFrame = portrait ? "aspect-[9/13.5]" : "h-48";
+  const imageSizes = portrait
+    ? "(min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 75vw"
+    : "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
+  const viewClass = `inline-flex items-center min-h-[44px] px-4 py-2 rounded-xl text-sm font-bold text-neutral-900 hover:underline underline-offset-4 cursor-pointer whitespace-nowrap${portrait ? " justify-center" : ""}`;
+  const githubClass = `inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 rounded-xl bg-black text-white text-xs font-bold hover:opacity-80 cursor-pointer whitespace-nowrap${portrait ? " justify-center" : ""}`;
 
   return (
     <CardContainer>
@@ -30,7 +44,7 @@ const ProjectCard = ({ title, description, image, viewProject, github }: Project
         <CardItem translateZ="20" className="w-full mt-4">
           {imgError ? (
             <div
-              className="flex h-48 w-full items-center justify-center rounded-xl bg-gradient-to-br from-card-one via-card-two to-card-three"
+              className={`flex ${imageFrame} w-full items-center justify-center rounded-xl bg-gradient-to-br from-card-one via-card-two to-card-three`}
               role="img"
               aria-label={`${title} — preview unavailable`}
             >
@@ -43,36 +57,50 @@ const ProjectCard = ({ title, description, image, viewProject, github }: Project
               src={image}
               width={1000}
               height={1000}
-              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-              className="h-48 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+              sizes={imageSizes}
+              className={`${imageFrame} w-full object-cover rounded-xl group-hover/card:shadow-xl`}
               alt={`${title} — project screenshot`}
               onError={() => setImgError(true)}
             />
           )}
         </CardItem>
-        {(hasView || hasGithub) && (
-          <div data-tilt-freeze className="relative z-10 flex justify-between items-center gap-3 mt-10">
+        {(hasView || hasGithub || placeholder) && (
+          <div
+            data-tilt-freeze
+            className={`relative z-10 mt-10 flex gap-3 ${portrait ? "flex-col items-stretch" : "flex-wrap justify-between items-center"}`}
+          >
             {hasView ? (
               <a
                 href={viewProject}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center min-h-[44px] px-4 py-2 rounded-xl text-sm font-bold text-neutral-900 hover:underline underline-offset-4 cursor-pointer"
+                tabIndex={isDuplicate ? -1 : undefined}
+                className={viewClass}
               >
                 View Project →
               </a>
+            ) : placeholder ? (
+              <span className={`${viewClass} opacity-60`} aria-disabled="true">
+                View Project →
+              </span>
             ) : <span />}
-            {hasGithub && (
+            {hasGithub ? (
               <a
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 rounded-xl bg-black text-white text-xs font-bold hover:opacity-80 cursor-pointer"
+                tabIndex={isDuplicate ? -1 : undefined}
+                className={githubClass}
               >
                 <Github size={14} aria-hidden="true" />
                 GitHub →
               </a>
-            )}
+            ) : placeholder ? (
+              <span className={`${githubClass} opacity-60`} aria-disabled="true">
+                <Github size={14} aria-hidden="true" />
+                GitHub →
+              </span>
+            ) : null}
           </div>
         )}
       </CardBody>
@@ -180,9 +208,11 @@ const DragRow = ({ children, label, autoScroll = false }: { children: React.Reac
     >
       {children}
       {autoScroll && (
-        <div className="contents" inert aria-hidden="true">
-          {children}
-        </div>
+        <DuplicateContext.Provider value={true}>
+          <div className="contents" aria-hidden="true">
+            {children}
+          </div>
+        </DuplicateContext.Provider>
       )}
     </div>
   );
@@ -198,6 +228,13 @@ const Projects = () => {
     { title: "AI resume Analyser", description: "powerful free AI resume analyser tool that helps you get the best job offer", image: "/images/AI-resume.jpg", viewProject: "https://ai-resume-analyzer-roan-phi.vercel.app/upload", github: "https://github.com/motohamy1/ai-resume-analyzer" },
     { title: "Restaurant website", description: "Modern restaurant food delivery with fast response times", image: "/images/tasty.png", viewProject: "https://spongyfood.onrender.com/", github: "https://github.com/motohamy1/spongyfood" },
     { title: "Movies website", description: "Brings the latest Trending Movies and TV Shows with AI recommendations", image: "/images/movies-web.png", viewProject: "https://movie-app-c8pp.onrender.com/", github: "https://github.com/motohamy1/Movie-app" },
+  ]
+
+  const mobileProjects = [
+    { title: "Nizam Life Organizer", description: "An all-in-one life organizer that folds tasks, projects, reminders, and daily planning into one calm, offline-first app — real-time synced and fully bilingual in Arabic (RTL) and English.", image: "/images/mobile.png", viewProject: "#", github: "https://github.com/motohamy1/Nizam-app", placeholder: true, portrait: true },
+    { title: "MedArena Clinical Assistant", description: "A point-of-care clinical decision-support app for physicians and residents — fast, grounded answers built to feel like a precise medical instrument, powered by vector search over clinical knowledge.", image: "/images/mobiledevelopinfo.png", viewProject: "#", github: "https://github.com/motohamy1/medArena", placeholder: true, portrait: true },
+    { title: "TasteMood Food Decider", description: "An AI decision engine for food that reads your taste and mood, then picks the meal — it ends the nightly \"what do we eat?\" standoff in a single tap.", image: "/images/mobile.png", viewProject: "#", github: "https://github.com/motohamy1/TasteMood", placeholder: true, portrait: true },
+    { title: "Finance Tracker App", description: "A personal finance tracker that captures spending from a photo — receipt OCR pulls the numbers in, so budgets and categories stay current without any manual entry.", image: "/images/mobiledevelopinfo.png", viewProject: "#", github: "https://github.com/motohamy1/finance-tracker-app", placeholder: true, portrait: true },
   ]
 
   return (
@@ -235,6 +272,20 @@ const Projects = () => {
             </DragRow>
           ))}
         </div>
+      </div>
+      {/* Mobile Development Section */}
+      <div className='mb-10'>
+        <h2 className='text-3xl font-bold font-cursive text-cream mb-10 text-center'>Mobile Development</h2>
+        <DragRow label="Mobile projects" autoScroll>
+          {mobileProjects.map((project, index) => (
+            <div
+              key={index}
+              className="w-[75%] shrink-0 sm:w-[calc((100%_-_2rem)/2)] md:w-[calc((100%_-_4rem)/3)] lg:w-[calc((100%_-_6rem)/4)]"
+            >
+              <ProjectCard {...project} />
+            </div>
+          ))}
+        </DragRow>
       </div>
       </div>
     </div>

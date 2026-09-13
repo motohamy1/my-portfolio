@@ -44,7 +44,7 @@ const navWrapperClass = 'fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 w-[
       <nav className={navInnerClass}>
         {/* Mobile Header View */}
         <div className="flex items-center justify-between md:hidden">
-            <Link href="#home" className="shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link href="#home" className="shrink-0 inline-flex items-center min-h-[44px]" onClick={() => setIsMobileMenuOpen(false)}>
                 <h1 className="font-cursive text-2xl text-rust font-bold pl-2">Tohamy</h1>
             </Link>
             <button 
